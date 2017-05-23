@@ -32,6 +32,7 @@
   */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "mainThread.h"
 #include "stm32l0xx_hal.h"
 
 /* USER CODE BEGIN Includes */
@@ -76,13 +77,20 @@ int main(void)
   /* Initialize all configured peripherals */
 
   /* USER CODE BEGIN 2 */
-
+  int errorCode = 0;
+  errorCode = initMainThread();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    
+    errorCode = mainThread();
+    if(errorCode)
+    {
+      //restart board
+    }
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */

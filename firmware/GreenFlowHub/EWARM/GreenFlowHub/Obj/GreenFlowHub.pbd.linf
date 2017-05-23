@@ -1,5 +1,10 @@
 ﻿E:\GreenFlow\GreenFlow\firmware\GreenFlowHub\EWARM\GreenFlowHub\Obj\GreenFlowHub.pbd
+E:\GreenFlow\GreenFlow\firmware\GreenFlowHub\EWARM\GreenFlowHub\Obj\batteryCheck.pbi
+E:\GreenFlow\GreenFlow\firmware\GreenFlowHub\EWARM\GreenFlowHub\Obj\chargerState.pbi
+E:\GreenFlow\GreenFlow\firmware\GreenFlowHub\EWARM\GreenFlowHub\Obj\decodedData.pbi
+E:\GreenFlow\GreenFlow\firmware\GreenFlowHub\EWARM\GreenFlowHub\Obj\lcdControl.pbi
 E:\GreenFlow\GreenFlow\firmware\GreenFlowHub\EWARM\GreenFlowHub\Obj\main.pbi
+E:\GreenFlow\GreenFlow\firmware\GreenFlowHub\EWARM\GreenFlowHub\Obj\mainThread.pbi
 E:\GreenFlow\GreenFlow\firmware\GreenFlowHub\EWARM\GreenFlowHub\Obj\stm32l0xx_hal.pbi
 E:\GreenFlow\GreenFlow\firmware\GreenFlowHub\EWARM\GreenFlowHub\Obj\stm32l0xx_hal_cortex.pbi
 E:\GreenFlow\GreenFlow\firmware\GreenFlowHub\EWARM\GreenFlowHub\Obj\stm32l0xx_hal_dma.pbi
@@ -16,3 +21,4 @@ E:\GreenFlow\GreenFlow\firmware\GreenFlowHub\EWARM\GreenFlowHub\Obj\stm32l0xx_ha
 E:\GreenFlow\GreenFlow\firmware\GreenFlowHub\EWARM\GreenFlowHub\Obj\stm32l0xx_hal_rcc_ex.pbi
 E:\GreenFlow\GreenFlow\firmware\GreenFlowHub\EWARM\GreenFlowHub\Obj\stm32l0xx_it.pbi
 E:\GreenFlow\GreenFlow\firmware\GreenFlowHub\EWARM\GreenFlowHub\Obj\system_stm32l0xx.pbi
+E:\GreenFlow\GreenFlow\firmware\GreenFlowHub\EWARM\GreenFlowHub\Obj\uartIO.pbi

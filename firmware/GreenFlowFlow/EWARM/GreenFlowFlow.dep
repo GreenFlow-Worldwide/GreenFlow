@@ -578,7 +578,7 @@
             <inputs>
                 <tool>
                     <name>ILINK</name>
-                    <file> 46 110 7 113 89 9 10 11 2 3 4 12 13 24 6 17 29 97 100 1 8 43 49 45 44 48</file>
+                    <file> 46 104 36 110 7 113 89 9 10 11 2 3 4 12 13 24 6 17 29 97 100 1 8 43 49 45 44 48</file>
                 </tool>
             </inputs>
         </file>
@@ -599,14 +599,22 @@
             <name>$PROJ_DIR$\..\Src\uartSend.c</name>
             <outputs>
                 <tool>
+                    <name>ICCARM</name>
+                    <file> 43</file>
+                </tool>
+                <tool>
                     <name>BICOMP</name>
                     <file> 42</file>
                 </tool>
             </outputs>
             <inputs>
                 <tool>
+                    <name>ICCARM</name>
+                    <file> 38 39</file>
+                </tool>
+                <tool>
                     <name>BICOMP</name>
-                    <file> 39</file>
+                    <file> 38 39</file>
                 </tool>
             </inputs>
         </file>
@@ -623,9 +631,5 @@
                 </tool>
             </outputs>
         </file>
-        <forcedrebuild>
-            <name>[MULTI_TOOL]</name>
-            <tool>ILINK</tool>
-        </forcedrebuild>
     </configuration>
 </project>

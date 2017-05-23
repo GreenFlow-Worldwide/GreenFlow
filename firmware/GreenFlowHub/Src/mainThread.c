@@ -9,9 +9,12 @@
 
 */
 
-#include "flagTimer.h"
-#include "uartSend.h"
-#include "uartIO.h"
+#include "lcdControl.h"
+#include "batteryCheck.h"
+#include "chargerState.h"
+#include "decodedData.h"
+//#include "wifi.h"    //TODO future work
+
 
 int initMainThread()
 {

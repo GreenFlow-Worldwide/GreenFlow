@@ -1189,6 +1189,9 @@
                 <name>$PROJ_DIR$\..\Src\stm32l0xx_it.c</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\Src\uartIO.c</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\Src\uartSend.c</name>
             </file>
         </group>

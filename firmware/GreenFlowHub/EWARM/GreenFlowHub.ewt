@@ -1168,31 +1168,13 @@
         <group>
             <name>User</name>
             <file>
-                <name>$PROJ_DIR$\..\Src\batteryCheck.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\Src\chargerState.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\Src\decodedData.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\Src\lcdControl.c</name>
-            </file>
-            <file>
                 <name>$PROJ_DIR$\..\Src\main.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\Src\mainThread.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Src\stm32l0xx_hal_msp.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Src\stm32l0xx_it.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\Src\uartIO.c</name>
             </file>
         </group>
     </group>

@@ -1,5 +1,9 @@
 ﻿E:\GreenFlow\GreenFlow\firmware\GreenFlowFlow\EWARM\GreenFlowFlow\Obj\GreenFlowFlow.pbd
+E:\GreenFlow\GreenFlow\firmware\GreenFlowFlow\EWARM\GreenFlowFlow\Obj\calcVolume.pbi
+E:\GreenFlow\GreenFlow\firmware\GreenFlowFlow\EWARM\GreenFlowFlow\Obj\checkErrors.pbi
+E:\GreenFlow\GreenFlow\firmware\GreenFlowFlow\EWARM\GreenFlowFlow\Obj\flagTimer.pbi
 E:\GreenFlow\GreenFlow\firmware\GreenFlowFlow\EWARM\GreenFlowFlow\Obj\main.pbi
+E:\GreenFlow\GreenFlow\firmware\GreenFlowFlow\EWARM\GreenFlowFlow\Obj\mainThread.pbi
 E:\GreenFlow\GreenFlow\firmware\GreenFlowFlow\EWARM\GreenFlowFlow\Obj\stm32l0xx_hal.pbi
 E:\GreenFlow\GreenFlow\firmware\GreenFlowFlow\EWARM\GreenFlowFlow\Obj\stm32l0xx_hal_cortex.pbi
 E:\GreenFlow\GreenFlow\firmware\GreenFlowFlow\EWARM\GreenFlowFlow\Obj\stm32l0xx_hal_dma.pbi
@@ -16,3 +20,4 @@ E:\GreenFlow\GreenFlow\firmware\GreenFlowFlow\EWARM\GreenFlowFlow\Obj\stm32l0xx_
 E:\GreenFlow\GreenFlow\firmware\GreenFlowFlow\EWARM\GreenFlowFlow\Obj\stm32l0xx_hal_rcc_ex.pbi
 E:\GreenFlow\GreenFlow\firmware\GreenFlowFlow\EWARM\GreenFlowFlow\Obj\stm32l0xx_it.pbi
 E:\GreenFlow\GreenFlow\firmware\GreenFlowFlow\EWARM\GreenFlowFlow\Obj\system_stm32l0xx.pbi
+E:\GreenFlow\GreenFlow\firmware\GreenFlowFlow\EWARM\GreenFlowFlow\Obj\uartSend.pbi

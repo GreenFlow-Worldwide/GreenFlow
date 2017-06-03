@@ -32,11 +32,11 @@
                 </option>
                 <option>
                     <name>Input description</name>
-                    <state></state>
+                    <state>Full formatting, with multibyte support.</state>
                 </option>
                 <option>
                     <name>Output description</name>
-                    <state></state>
+                    <state>Full formatting, with multibyte support.</state>
                 </option>
                 <option>
                     <name>GOutputBinary</name>
@@ -117,7 +117,7 @@
                 <option>
                     <name>GBECoreSlave</name>
                     <version>25</version>
-                    <state>0</state>
+                    <state>35</state>
                 </option>
                 <option>
                     <name>OGUseCmsis</name>
@@ -273,7 +273,7 @@
                 <option>
                     <name>CCAllowList</name>
                     <version>1</version>
-                    <state>11111110</state>
+                    <state>00000000</state>
                 </option>
                 <option>
                     <name>CCDebugInfo</name>
@@ -357,7 +357,7 @@
                 </option>
                 <option>
                     <name>CCOptLevel</name>
-                    <state>3</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>CCOptStrategy</name>
@@ -366,7 +366,7 @@
                 </option>
                 <option>
                     <name>CCOptLevelSlave</name>
-                    <state>3</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>CompilerMisraRules98</name>
@@ -637,7 +637,7 @@
                 </option>
                 <option>
                     <name>OOCOutputFile</name>
-                    <state>Project.srec</state>
+                    <state>GreenFlowHub.srec</state>
                 </option>
                 <option>
                     <name>OOCCommandLineProducer</name>
@@ -1027,13 +1027,34 @@
         <group>
             <name>User</name>
             <file>
+                <name>$PROJ_DIR$\..\Src\batteryCheck.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Src\chargerState.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Src\decodedData.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Src\grabData.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Src\lcdControl.c</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\Src\main.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Src\mainThread.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Src\stm32l0xx_hal_msp.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Src\stm32l0xx_it.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Src\uartIO.c</name>
             </file>
         </group>
     </group>

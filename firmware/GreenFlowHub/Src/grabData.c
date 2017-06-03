@@ -1,0 +1,40 @@
+/*
+we will have be grabbing the decoded data, charger state data
+battery check data and putting it all into a single struct to return to main.
+this data can be easily used by LCD control to find information and print 
+it to the screen
+
+all functions and file_wide variables will have prefix gd
+*/
+
+
+#include "batteryCheck.h"
+#include "chargerState.h"
+#include "decodedData.h"
+#include "grabData.h"
+
+char gd_getDisplayData(gd_lcdData * displayData)
+{
+  //have error code here display something different for each function call
+  char errorCode = 0;
+  
+  double updatedVolume = 0;
+  char updatedFlowFlags = 0;
+  char updatedHubCharger = 0;
+  char updatedHubBattery = 0;
+  
+  //TODO: error check after each function, deal with each error code seperately
+  errorCode = dd_getUpdatedFlowData(&updatedVolume, &updatedFlowFlags);
+  errorCode = cs_getUpdatedHubCharger(&updatedHubCharger);
+  errorCode = bc_getUpdatedHubBattery(&updatedHubBattery);
+  
+  //copy values to struct to pass back
+  displayData->volume = updatedVolume;
+  displayData->flowFlags = updatedFlowFlags;
+  displayData->hubCharger = updatedHubCharger;
+  displayData->hubBattery = updatedHubBattery;
+  
+  //return any error code that needs to be sent up. 
+  //SOME ERROR CODES CAN BE DEALT WITH IN THIS FUNCTION AND DO NOT NEED TO BE PASSED UP
+  return errorCode;
+}

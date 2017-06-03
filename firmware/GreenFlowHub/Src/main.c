@@ -87,9 +87,10 @@ int main(void)
   {
     
     errorCode = mainThread();
+    //fatal error has occured restart board
     if(errorCode)
     {
-      //restart board
+      //TODO:restart board
     }
   /* USER CODE END WHILE */
 

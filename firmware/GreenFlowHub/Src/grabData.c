@@ -6,12 +6,21 @@ it to the screen
 
 all functions and file_wide variables will have prefix gd
 */
-
+//TODO: add section in struct for total water usage
 
 #include "batteryCheck.h"
 #include "chargerState.h"
 #include "decodedData.h"
 #include "grabData.h"
+
+//initalize all data and function call decoded data, charger state
+// and battery check to initalize as well.
+void gd_zeroGrabData()
+{
+  dd_zeroDecodedData();
+  cs_zeroChargerState();
+  bc_zeroBatteryCheck();
+}
 
 char gd_getDisplayData(gd_lcdData * displayData)
 {

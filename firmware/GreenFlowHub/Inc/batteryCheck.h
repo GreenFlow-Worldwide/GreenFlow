@@ -2,6 +2,6 @@
 #define _BATTERY_CHECK_H_
 
 char bc_getUpdatedHubBattery(char * batteryFlag);
-
+void bc_zeroBatteryCheck();
 
 #endif

@@ -10,6 +10,13 @@ all functions and file_wide variables will have prefix dd
 static double dd_currentVolume;
 static char dd_currentFlags;
 
+void dd_zeroDecodedData()
+{
+  //TODO: uart zero
+  dd_currentVolume = 0;
+  dd_currentFlags = 0;
+}
+
 char dd_decodeData()
 {
   char errorCode = 0;

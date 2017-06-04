@@ -16,10 +16,13 @@
 
 static gd_lcdData displayData;
 
+
 char initMainThread()
 {
   char errorCode = 0;
-  
+  //zero all file wide variables flowing downward.
+  gd_zeroGrabData();
+  lcd_zeroLcdData();
   displayData.volume = 0;
   displayData.flowFlags = 0;
   displayData.hubCharger = 0;

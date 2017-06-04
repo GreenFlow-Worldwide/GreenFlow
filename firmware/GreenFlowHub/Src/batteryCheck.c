@@ -6,6 +6,12 @@ all functions and file_wide variables will have prefix bc
 */
 static char bc_batteryFlag;
 
+void bc_zeroBatteryCheck()
+{
+  bc_batteryFlag = 0;
+}
+
+
 //TODO: grab battery states and put them here to be decoded later.
 char bc_checkBatteryStatus()
 {

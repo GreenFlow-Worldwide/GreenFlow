@@ -3,8 +3,15 @@ we will have be checking the charger state
 
 all functions and file_wide variables will have prefix cs
 */
+#include "chargerState.h"
 
 static char cs_chargerFlag;
+
+void cs_zeroChargerState()
+{
+  cs_chargerFlag = 0;
+  
+}
 
 //TODO: grab charger states and put them here to be decoded later.
 char cs_checkChargerStatus()

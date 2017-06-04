@@ -41,6 +41,15 @@
 
 /* Private define ------------------------------------------------------------*/
 
+#define backButton_Pin GPIO_PIN_0
+#define backButton_GPIO_Port GPIOA
+#define downButton_Pin GPIO_PIN_1
+#define downButton_GPIO_Port GPIOA
+#define upButton_Pin GPIO_PIN_4
+#define upButton_GPIO_Port GPIOA
+#define nextbutton_Pin GPIO_PIN_5
+#define nextbutton_GPIO_Port GPIOA
+
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

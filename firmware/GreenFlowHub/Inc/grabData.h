@@ -11,4 +11,6 @@ typedef struct
 }gd_lcdData;
 
 char gd_getDisplayData(gd_lcdData * displayData);
+void gd_zeroGrabData();
+
 #endif

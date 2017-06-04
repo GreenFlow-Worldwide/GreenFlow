@@ -12,19 +12,23 @@
 #include "lcdControl.h"
 #include "grabData.h"
 #include "stdint.h"
+#include "stm32l0xx_hal.h"
 //#include "wifi.h"    //TODO future work
 
 static gd_lcdData displayData;
 
-
-char initMainThread()
+//init all variables and send adc, uart handlers down to respective files
+//ADC handler goes to battery check
+//huart handler goes to uartIO
+char initMainThread(ADC_HandleTypeDef * batteryAdcHandler, UART_HandleTypeDef * uartHandler)
 {
   char errorCode = 0;
   //zero all file wide variables flowing downward.
-  gd_zeroGrabData();
-  lcd_zeroLcdData();
+  errorCode = gd_initGrabData(batteryAdcHandler, uartHandler);
+  errorCode = lcd_initLcdData();
   displayData.volume = 0;
-  displayData.flowFlags = 0;
+  displayData.flowChargerFlags = 0;
+  displayData.flowBatteryFlags = 0;
   displayData.hubCharger = 0;
   displayData.hubBattery = 0;
   

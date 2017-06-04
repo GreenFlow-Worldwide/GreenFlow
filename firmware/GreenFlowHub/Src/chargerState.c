@@ -7,10 +7,11 @@ all functions and file_wide variables will have prefix cs
 
 static char cs_chargerFlag;
 
-void cs_zeroChargerState()
+char cs_initChargerState()
 {
+  char errorCode = 0;
   cs_chargerFlag = 0;
-  
+  return errorCode;
 }
 
 //TODO: grab charger states and put them here to be decoded later.

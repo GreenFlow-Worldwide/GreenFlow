@@ -1,7 +1,6 @@
 #ifndef _BATTERY_CHECK_H_ 
 #define _BATTERY_CHECK_H_
 //init function
-void bs_initButtonStates();
 
 /*returns button input
 * 0x01 is back
@@ -17,6 +16,8 @@ void bs_initButtonStates();
 * - will go up or down if one of them has been pressed
 */
 char bs_getInputButtons(char * buttonInput);
+
+char bs_initButtonStates();
 
 //interupt function flags
 void bs_setNextButtonState();

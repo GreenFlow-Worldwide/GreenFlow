@@ -8,18 +8,26 @@ all functions and file_wide variables will have prefix gd
 */
 //TODO: add section in struct for total water usage
 
+#include "stm32l0xx_hal.h"
 #include "batteryCheck.h"
 #include "chargerState.h"
 #include "decodedData.h"
 #include "grabData.h"
 
+
 //initalize all data and function call decoded data, charger state
 // and battery check to initalize as well.
-void gd_zeroGrabData()
+char gd_initGrabData(ADC_HandleTypeDef * batteryAdcHandler, UART_HandleTypeDef * uartHandler)
 {
-  dd_zeroDecodedData();
-  cs_zeroChargerState();
-  bc_zeroBatteryCheck();
+  char errorCode = 0;
+  //pass uart handler to decodedData -> UartIO
+  errorCode = dd_initDecodedData(uartHandler);
+
+  errorCode = cs_initChargerState();
+  
+  //pass adcHandler to the battery 
+  errorCode = bc_initBatteryCheck(batteryAdcHandler);
+  return errorCode;
 }
 
 char gd_getDisplayData(gd_lcdData * displayData)
@@ -28,18 +36,20 @@ char gd_getDisplayData(gd_lcdData * displayData)
   char errorCode = 0;
   
   double updatedVolume = 0;
-  char updatedFlowFlags = 0;
+  char updatedFlowBatteryFlags = 0;
+  char updatedFlowChargerFlags = 0;
   char updatedHubCharger = 0;
   char updatedHubBattery = 0;
   
   //TODO: error check after each function, deal with each error code seperately
-  errorCode = dd_getUpdatedFlowData(&updatedVolume, &updatedFlowFlags);
+  errorCode = dd_getUpdatedFlowData(&updatedVolume, &updatedFlowBatteryFlags, &updatedFlowChargerFlags);
   errorCode = cs_getUpdatedHubCharger(&updatedHubCharger);
   errorCode = bc_getUpdatedHubBattery(&updatedHubBattery);
   
   //copy values to struct to pass back
   displayData->volume = updatedVolume;
-  displayData->flowFlags = updatedFlowFlags;
+  displayData->flowChargerFlags = updatedFlowChargerFlags;
+  displayData->flowBatteryFlags = updatedFlowBatteryFlags;
   displayData->hubCharger = updatedHubCharger;
   displayData->hubBattery = updatedHubBattery;
   

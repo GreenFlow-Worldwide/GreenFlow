@@ -4,11 +4,32 @@ dealing with battery reading from flow
 
 all functions and file_wide variables will have prefix bc
 */
+#include "stm32l0xx_hal.h"
+
+//adc handler needed for HAL function calls
+static ADC_HandleTypeDef * bc_batteryAdcHandle;
+
+//battery flag storage variable
+//TODO: design what the variable returns
 static char bc_batteryFlag;
 
-void bc_zeroBatteryCheck()
+
+
+char bc_initBatteryCheck(ADC_HandleTypeDef * batteryAdcHandle)
 {
+  char errorCode = 0;
   bc_batteryFlag = 0;
+  
+  //copy Adc handler to be used in this c file
+  bc_batteryAdcHandle = batteryAdcHandle;
+  
+  //TODO: if HAL library returns any error, escape and restart hardware
+  if(HAL_ADC_Start(bc_batteryAdcHandle))
+  {
+    errorCode = 1; //fatal error
+    return errorCode;
+  }
+  return errorCode;
 }
 
 
@@ -16,6 +37,9 @@ void bc_zeroBatteryCheck()
 char bc_checkBatteryStatus()
 {
   char errorCode = 0;
+  
+  uint32_t currentBatteryValue = HAL_ADC_GetValue(bc_batteryAdcHandle);
+  
   bc_batteryFlag = 10;
   return errorCode;
 }

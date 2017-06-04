@@ -100,9 +100,11 @@ char bs_getInputButtons(char * buttonInput)
 
 
 //set all states to false and init any other firmware
-void bs_initButtonStates()
+char bs_initButtonStates()
 {
+  char errorCode = 0;
   bs_setButtonStatesLow();
+  return errorCode;
 }
 
 /* NEXT 4 FUNCTIONS ONLY CALLED BY INTERUPTS*/

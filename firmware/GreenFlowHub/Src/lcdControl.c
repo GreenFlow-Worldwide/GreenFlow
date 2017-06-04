@@ -10,10 +10,11 @@ all functions and file_wide variables will have prefix lcd
 
 
 //zero or initalize any variables here
-void lcd_zeroLcdData()
+char lcd_initLcdData()
 {
-  bs_initButtonStates();
-
+  char errorCode = 0;
+  char bs_initButtonStates();
+  return errorCode;
 }
 
 char lcd_updateScreen(gd_lcdData displayData)

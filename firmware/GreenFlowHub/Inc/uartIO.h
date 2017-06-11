@@ -3,5 +3,6 @@
 
 char uio_initUartIO(UART_HandleTypeDef * uartHandler);
 char uio_getUartRawData(double *volume, char *flowChargerFlags, char *flowBatteryFlags);
+char uio_sentPacket();
 
 #endif

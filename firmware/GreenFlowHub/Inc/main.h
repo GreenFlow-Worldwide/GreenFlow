@@ -49,6 +49,10 @@
 #define upButton_GPIO_Port GPIOA
 #define nextbutton_Pin GPIO_PIN_5
 #define nextbutton_GPIO_Port GPIOA
+#define uartTX_Pin GPIO_PIN_9
+#define uartTX_GPIO_Port GPIOA
+#define uartRx_Pin GPIO_PIN_10
+#define uartRx_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
 

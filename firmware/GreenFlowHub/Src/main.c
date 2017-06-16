@@ -41,6 +41,8 @@
 /* Private variables ---------------------------------------------------------*/
 ADC_HandleTypeDef hadc;
 
+SPI_HandleTypeDef hspi2;
+
 UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
@@ -54,6 +56,7 @@ void Error_Handler(void);
 static void MX_GPIO_Init(void);
 static void MX_USART1_UART_Init(void);
 static void MX_ADC_Init(void);
+static void MX_SPI2_Init(void);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
@@ -83,6 +86,7 @@ int main(void)
   MX_GPIO_Init();
   MX_USART1_UART_Init();
   MX_ADC_Init();
+  MX_SPI2_Init();
 
   /* USER CODE BEGIN 2 */
   int errorCode = 0;
@@ -209,6 +213,29 @@ static void MX_ADC_Init(void)
 
 }
 
+/* SPI2 init function */
+static void MX_SPI2_Init(void)
+{
+
+  hspi2.Instance = SPI2;
+  hspi2.Init.Mode = SPI_MODE_MASTER;
+  hspi2.Init.Direction = SPI_DIRECTION_2LINES;
+  hspi2.Init.DataSize = SPI_DATASIZE_8BIT;
+  hspi2.Init.CLKPolarity = SPI_POLARITY_LOW;
+  hspi2.Init.CLKPhase = SPI_PHASE_1EDGE;
+  hspi2.Init.NSS = SPI_NSS_SOFT;
+  hspi2.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
+  hspi2.Init.FirstBit = SPI_FIRSTBIT_MSB;
+  hspi2.Init.TIMode = SPI_TIMODE_DISABLE;
+  hspi2.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+  hspi2.Init.CRCPolynomial = 7;
+  if (HAL_SPI_Init(&hspi2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+}
+
 /* USART1 init function */
 static void MX_USART1_UART_Init(void)
 {
@@ -243,19 +270,41 @@ static void MX_GPIO_Init(void)
   GPIO_InitTypeDef GPIO_InitStruct;
 
   /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
 
-  /*Configure GPIO pins : backButton_Pin downButton_Pin upButton_Pin */
-  GPIO_InitStruct.Pin = backButton_Pin|downButton_Pin|upButton_Pin;
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_4, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, LED_Red_Pin|LED_Blue_Pin|LED_Green_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pins : backButton_Pin downButton_Pin upButton_Pin nextbutton_Pin */
+  GPIO_InitStruct.Pin = backButton_Pin|downButton_Pin|upButton_Pin|nextbutton_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : nextbutton_Pin */
-  GPIO_InitStruct.Pin = nextbutton_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  /*Configure GPIO pin : PC4 */
+  GPIO_InitStruct.Pin = GPIO_PIN_4;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(nextbutton_GPIO_Port, &GPIO_InitStruct);
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : LED_Red_Pin LED_Blue_Pin LED_Green_Pin */
+  GPIO_InitStruct.Pin = LED_Red_Pin|LED_Blue_Pin|LED_Green_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : Charger_FLT_Pin Charger_STAT_Pin Charger_ADPP_Pin */
+  GPIO_InitStruct.Pin = Charger_FLT_Pin|Charger_STAT_Pin|Charger_ADPP_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI0_1_IRQn, 0, 0);

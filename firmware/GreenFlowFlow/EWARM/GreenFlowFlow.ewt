@@ -1168,10 +1168,13 @@
         <group>
             <name>User</name>
             <file>
+                <name>$PROJ_DIR$\..\Src\batteryCheck.c</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\Src\calcVolume.c</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\..\Src\checkErrors.c</name>
+                <name>$PROJ_DIR$\..\Src\chargerState.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Src\flagTimer.c</name>
@@ -1210,6 +1213,12 @@
                 <name>$PROJ_DIR$\..\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal.c</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_adc.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_adc_ex.c</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_cortex.c</name>
             </file>
             <file>
@@ -1244,6 +1253,18 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_rcc_ex.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_tim.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_tim_ex.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_uart.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_uart_ex.c</name>
             </file>
         </group>
     </group>

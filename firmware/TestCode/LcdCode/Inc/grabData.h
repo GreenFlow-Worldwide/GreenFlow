@@ -7,7 +7,8 @@
 
 typedef struct
 {
-  double volumeInLiters;
+  double currentVolumeInLiters;
+  double totalVolumeInLiters;
   char flowChargerFlags;
   char flowBatteryFlags;
   char hubCharger;

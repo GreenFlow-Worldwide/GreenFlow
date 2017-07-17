@@ -43,12 +43,16 @@
 
 #define backButton_Pin GPIO_PIN_0
 #define backButton_GPIO_Port GPIOA
+#define backButton_EXTI_IRQn EXTI0_1_IRQn
 #define downButton_Pin GPIO_PIN_1
 #define downButton_GPIO_Port GPIOA
+#define downButton_EXTI_IRQn EXTI0_1_IRQn
 #define upButton_Pin GPIO_PIN_4
 #define upButton_GPIO_Port GPIOA
+#define upButton_EXTI_IRQn EXTI4_15_IRQn
 #define nextbutton_Pin GPIO_PIN_5
 #define nextbutton_GPIO_Port GPIOA
+#define nextbutton_EXTI_IRQn EXTI4_15_IRQn
 #define LED_Red_Pin GPIO_PIN_0
 #define LED_Red_GPIO_Port GPIOB
 #define LED_Blue_Pin GPIO_PIN_1
@@ -57,10 +61,19 @@
 #define LED_Green_GPIO_Port GPIOB
 #define Charger_FLT_Pin GPIO_PIN_12
 #define Charger_FLT_GPIO_Port GPIOB
+#define Charger_FLT_EXTI_IRQn EXTI4_15_IRQn
 #define Charger_STAT_Pin GPIO_PIN_13
 #define Charger_STAT_GPIO_Port GPIOB
+#define Charger_STAT_EXTI_IRQn EXTI4_15_IRQn
 #define Charger_ADPP_Pin GPIO_PIN_14
 #define Charger_ADPP_GPIO_Port GPIOB
+#define Charger_ADPP_EXTI_IRQn EXTI4_15_IRQn
+#define LCD_LED_Pin GPIO_PIN_6
+#define LCD_LED_GPIO_Port GPIOC
+#define LCD_LCK_Pin GPIO_PIN_7
+#define LCD_LCK_GPIO_Port GPIOC
+#define LCD__OE_Pin GPIO_PIN_8
+#define LCD__OE_GPIO_Port GPIOC
 #define uartTX_Pin GPIO_PIN_9
 #define uartTX_GPIO_Port GPIOA
 #define uartRx_Pin GPIO_PIN_10

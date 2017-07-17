@@ -20,13 +20,14 @@ static gd_lcdData displayData;
 //init all variables and send adc, uart handlers down to respective files
 //ADC handler goes to battery check
 //huart handler goes to uartIO
-char initMainThread(ADC_HandleTypeDef * batteryAdcHandler, UART_HandleTypeDef * uartHandler)
+char initMainThread(ADC_HandleTypeDef * batteryAdcHandler, UART_HandleTypeDef * uartHandler, SPI_HandleTypeDef * spiHandler)
 {
   char errorCode = 0;
   //zero all file wide variables flowing downward.
   //errorCode = gd_initGrabData(batteryAdcHandler, uartHandler);
-  errorCode = lcd_initLcdData();
-  displayData.volumeInLiters = 0;
+  errorCode = lcd_initLcdData(spiHandler);
+  displayData.currentVolumeInLiters=0;
+  displayData.totalVolumeInLiters=0;
   displayData.flowChargerFlags = 0;
   displayData.flowBatteryFlags = 0;
   displayData.hubCharger = 0;
@@ -35,16 +36,17 @@ char initMainThread(ADC_HandleTypeDef * batteryAdcHandler, UART_HandleTypeDef * 
   return errorCode;
 }
 
-char mainThread()
+char mainThread(SPI_HandleTypeDef * spiHandler)
 {
   char errorCode = 0;
   //Check For New Data with this function
   //errorCode = gd_getDisplayData(&displayData);
   
   //every loop volume will go up.
-  displayData.volumeInLiters += 1.23;
+  displayData.totalVolumeInLiters = 500;
+  displayData.currentVolumeInLiters += 1.23;
   HAL_Delay(250);
   //give updated data to lcd to update screen
-  errorCode = lcd_updateScreen(displayData);
+  errorCode = lcd_updateScreen(spiHandler, displayData);
   return errorCode;
 }

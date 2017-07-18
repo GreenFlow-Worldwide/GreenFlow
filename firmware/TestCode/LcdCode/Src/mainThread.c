@@ -48,5 +48,21 @@ char mainThread(SPI_HandleTypeDef * spiHandler)
   HAL_Delay(250);
   //give updated data to lcd to update screen
   errorCode = lcd_updateScreen(spiHandler, displayData);
+  HAL_Delay(250);
+  displayData.flowChargerFlags = 1;
+  errorCode = lcd_updateScreen(spiHandler, displayData);
+  HAL_Delay(250);
+  displayData.flowChargerFlags = 0;
+  displayData.flowBatteryFlags = 1;
+  errorCode = lcd_updateScreen(spiHandler, displayData);
+  HAL_Delay(250);
+  displayData.flowBatteryFlags = 0;
+  displayData.hubCharger = 1;
+  errorCode = lcd_updateScreen(spiHandler, displayData);
+  HAL_Delay(250);
+  displayData.hubCharger = 0;
+  displayData.hubBattery = 1;
+  errorCode = lcd_updateScreen(spiHandler, displayData);
+  displayData.hubBattery = 0;
   return errorCode;
 }

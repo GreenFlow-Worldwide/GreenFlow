@@ -6,6 +6,10 @@
 char lcd_sendData(SPI_HandleTypeDef * spiHandler, uint8_t data);
 char lcd_initLcdData(SPI_HandleTypeDef * spiHandler);
 char lcd_updateScreen(SPI_HandleTypeDef * spiHandler, gd_lcdData displayData);
-char lcd_Write(SPI_HandleTypeDef * spiHandler, uint8_t data, uint8_t regSelect);
+char lcd_write(SPI_HandleTypeDef * spiHandler, uint8_t data, uint8_t regSelect);
+char lcd_clear(SPI_HandleTypeDef * spiHandler);
+char lcd_goto(SPI_HandleTypeDef * spiHandler, uint8_t pos, uint8_t line);
+char lcd_puts(SPI_HandleTypeDef * spiHandler, uint8_t * s);
+char lcd_staticText(SPI_HandleTypeDef * spiHandler);
 
 #endif

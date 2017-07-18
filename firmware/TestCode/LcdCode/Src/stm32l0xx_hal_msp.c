@@ -4,6 +4,11 @@
   * Description        : This file provides code for the MSP Initialization 
   *                      and de-Initialization codes.
   ******************************************************************************
+  ** This notice applies to any and all portions of this file
+  * that are not between comment pairs USER CODE BEGIN and
+  * USER CODE END. Other portions of this file, whether 
+  * inserted by the user or by software development tools
+  * are owned by their respective copyright owners.
   *
   * COPYRIGHT(c) 2017 STMicroelectronics
   *
@@ -34,7 +39,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32l0xx_hal.h"
 
-extern void Error_Handler(void);
+extern void _Error_Handler(char *, int);
 /* USER CODE BEGIN 0 */
 
 /* USER CODE END 0 */
@@ -106,10 +111,10 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* hadc)
     */
     HAL_GPIO_DeInit(GPIOA, GPIO_PIN_6);
 
-  }
   /* USER CODE BEGIN ADC1_MspDeInit 1 */
 
   /* USER CODE END ADC1_MspDeInit 1 */
+  }
 
 }
 
@@ -167,10 +172,10 @@ void HAL_SPI_MspDeInit(SPI_HandleTypeDef* hspi)
     */
     HAL_GPIO_DeInit(GPIOB, GPIO_PIN_10|GPIO_PIN_15);
 
-  }
   /* USER CODE BEGIN SPI2_MspDeInit 1 */
 
   /* USER CODE END SPI2_MspDeInit 1 */
+  }
 
 }
 
@@ -197,7 +202,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
     GPIO_InitStruct.Alternate = GPIO_AF4_USART1;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-    /* Peripheral interrupt init */
+    /* USART1 interrupt Init */
     HAL_NVIC_SetPriority(USART1_IRQn, 0, 0);
     HAL_NVIC_EnableIRQ(USART1_IRQn);
   /* USER CODE BEGIN USART1_MspInit 1 */
@@ -224,13 +229,12 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* huart)
     */
     HAL_GPIO_DeInit(GPIOA, uartTX_Pin|uartRx_Pin);
 
-    /* Peripheral interrupt DeInit*/
+    /* USART1 interrupt DeInit */
     HAL_NVIC_DisableIRQ(USART1_IRQn);
-
-  }
   /* USER CODE BEGIN USART1_MspDeInit 1 */
 
   /* USER CODE END USART1_MspDeInit 1 */
+  }
 
 }
 

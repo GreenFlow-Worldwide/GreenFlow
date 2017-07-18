@@ -94,6 +94,55 @@ char lcd_staticText(SPI_HandleTypeDef * spiHandler){
   return errorCode;
 }
 
+char lcd_statusMessage(SPI_HandleTypeDef * spiHandler, gd_lcdData displayData){
+  char errorCode = 0;
+  static uint8_t lcd_messageCount = 0;
+  if(lcd_messageCount < 8){
+    if(displayData.flowChargerFlags){
+      lcd_goto(spiHandler, 0, 2);
+      lcd_putString(spiHandler, "Flow Charging");
+    }
+    else{
+      lcd_messageCount = 8;
+    }
+  }
+  else if(lcd_messageCount < 16){
+    if(displayData.flowBatteryFlags){
+      lcd_goto(spiHandler, 0, 2);
+      lcd_putString(spiHandler, "FLOW BATT LOW");
+    }
+    else{
+      lcd_messageCount = 16;
+    }
+  }
+  else if(lcd_messageCount < 24){
+    if(displayData.hubCharger){
+      lcd_goto(spiHandler, 0, 2);
+      lcd_putString(spiHandler, "Hub Charging");
+      lcd_write(spiHandler, 0x20, 1);
+    }
+    else{
+      lcd_messageCount = 24;
+    }
+  }
+  else if(lcd_messageCount < 32){
+    if(displayData.hubBattery){
+      lcd_goto(spiHandler, 0, 2);
+      lcd_putString(spiHandler, "HUB BATT LOW");
+      lcd_write(spiHandler, 0x20, 1);
+    }
+    else{
+      lcd_messageCount = 0;
+    }
+  }
+  lcd_messageCount = lcd_messageCount + 1;
+  if (lcd_messageCount > 32){
+    lcd_messageCount = 0;
+  }
+  
+  return errorCode;
+}
+
 //zero or initalize any variables here
 char lcd_initLcdData(SPI_HandleTypeDef * spiHandler)
 {
@@ -135,30 +184,12 @@ char lcd_updateScreen(SPI_HandleTypeDef * spiHandler, gd_lcdData displayData)
   char errorCode = 0;
   char buttonInput = 0;
   //test LCD Code for debugging
-  HAL_Delay(450);
   
   //look in buttonStates.h on this function
   errorCode = bs_getInputButtons(&buttonInput);
   //TODO for JP: update lcd in here with values from displayData and 
   //interupt flags from the push buttons
-  if(displayData.flowChargerFlags){
-    lcd_goto(spiHandler, 0, 2);
-    lcd_putString(spiHandler, "Flow Charging");
-  }
-  if(displayData.flowBatteryFlags){
-    lcd_goto(spiHandler, 0, 2);
-    lcd_putString(spiHandler, "FLOW BATT LOW");
-  }
-  if(displayData.hubCharger){
-    lcd_goto(spiHandler, 0, 2);
-    lcd_putString(spiHandler, "Hub Charging");
-    lcd_write(spiHandler, 0x20, 1);
-  }
-  if(displayData.hubBattery){
-    lcd_goto(spiHandler, 0, 2);
-    lcd_putString(spiHandler, "HUB BATT LOW");
-    lcd_write(spiHandler, 0x20, 1);
-  }
+  lcd_statusMessage(spiHandler, displayData);
 /*
   displayData.currentVolumeInLiters=0;
   displayData.totalVolumeInLiters=0;

@@ -172,7 +172,7 @@ the current volume on the third line of the LCD
 */
 char lcd_displayCurrent(SPI_HandleTypeDef * spiHandler, gd_lcdData displayData){
   char errorCode = 0;
-  char currentLiters[5];
+  char currentLiters[10];
   sprintf(currentLiters, "%.1f", displayData.currentVolumeInLiters);
   if(displayData.currentVolumeInLiters >= 10000){
     sprintf(currentLiters, "%.0f", displayData.currentVolumeInLiters);
@@ -190,11 +190,14 @@ char lcd_displayCurrent(SPI_HandleTypeDef * spiHandler, gd_lcdData displayData){
     lcd_putString(spiHandler, currentLiters);
   }
   else if(displayData.currentVolumeInLiters >= 10){
-    lcd_goto(spiHandler, 14, 3);
+    lcd_goto(spiHandler, 13, 3);
+    lcd_write(spiHandler, 0x20, 1);
     lcd_putString(spiHandler, currentLiters);  
   }
   else{
-    lcd_goto(spiHandler, 15, 3);
+    lcd_goto(spiHandler, 13, 3);
+    lcd_write(spiHandler, 0x20, 1);
+    lcd_write(spiHandler, 0x20, 1);
     lcd_putString(spiHandler, currentLiters);  
   }
   return errorCode;
@@ -275,8 +278,6 @@ char lcd_initLcdData(SPI_HandleTypeDef * spiHandler)
   
   lcd_write(spiHandler, 0x28, 0);// 4 bit, 2-line, 5x8 dots
   lcd_write(spiHandler, 0x0C, 0);// display on, cursor off, no blink
-  //lcd_write(spiHandler, 0x10, 0);      //set curser
-  //lcd_write(spiHandler, 0x0F, 0);      //set Display ON, Blinking
   lcd_write(spiHandler, 0x06, 0);// increment cursor, no shift/Entry Mode Set
   
   lcd_clear(spiHandler);

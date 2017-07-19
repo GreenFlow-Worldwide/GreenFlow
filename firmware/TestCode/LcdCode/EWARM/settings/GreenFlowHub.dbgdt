@@ -766,7 +766,7 @@
                     <item>count</item>
                     <item>count</item>
                     <item>lcd_messageCount</item>
-                    <item></item>
+                    <item />
                 </expressions>
                 <col-names>
                     <item>Expression</item>

@@ -12,5 +12,7 @@ char lcd_goto(SPI_HandleTypeDef * spiHandler, uint8_t pos, uint8_t line);
 char lcd_puts(SPI_HandleTypeDef * spiHandler, uint8_t * s);
 char lcd_staticText(SPI_HandleTypeDef * spiHandler);
 char lcd_statusMessage(SPI_HandleTypeDef * spiHandler, gd_lcdData displayData);
+char lcd_displaCurrent(SPI_HandleTypeDef * spiHandler, gd_lcdData displayData);
+char lcd_displayTotal(SPI_HandleTypeDef * spiHandler, gd_lcdData displayData);
 
 #endif

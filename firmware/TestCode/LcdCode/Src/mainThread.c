@@ -39,17 +39,22 @@ char initMainThread(ADC_HandleTypeDef * batteryAdcHandler, UART_HandleTypeDef * 
 char mainThread(SPI_HandleTypeDef * spiHandler)
 {
   char errorCode = 0;
+  static uint8_t count = 0;
   //Check For New Data with this function
   //errorCode = gd_getDisplayData(&displayData);
   
   //every loop volume will go up.
-  displayData.totalVolumeInLiters = 500;
+  displayData.totalVolumeInLiters += 1.23;
   displayData.currentVolumeInLiters += 1.23;
   HAL_Delay(250);
   displayData.flowChargerFlags = 1;
-  //displayData.hubCharger = 1;
-  //displayData.flowBatteryFlags = 1;
+  displayData.hubCharger = 1;
+  displayData.flowBatteryFlags = 1;
   displayData.hubBattery = 1;
   errorCode = lcd_updateScreen(spiHandler, displayData);
+  count = count + 1;
+  if(count > 100){
+    count = 0;
+  }
   return errorCode;
 }

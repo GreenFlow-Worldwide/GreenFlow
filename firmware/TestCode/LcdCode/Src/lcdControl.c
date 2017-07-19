@@ -8,6 +8,10 @@ all functions and file_wide variables will have prefix lcd
 #include "stm32l0xx_hal.h"
 #include "stdint.h"
 
+/*
+this function takes the spi handler and a byte of data and sends it out of the 
+spi port. It sends the byte 3 times while toggling the Enable bit for the LCD
+*/
 char lcd_sendData(SPI_HandleTypeDef * spiHandler, uint8_t data){
   char errorCode = 0;
   char sendData= 0xFF;
@@ -28,6 +32,11 @@ char lcd_sendData(SPI_HandleTypeDef * spiHandler, uint8_t data){
   return errorCode;
 }
 
+/*
+This function takes the spi handler, a byte of data, and the register select
+bit and breaks the data into upper and lower nibble, appending the register
+select bit onto each new byte, and sends each byte to lcd_sendData
+*/
 char lcd_write(SPI_HandleTypeDef * spiHandler, uint8_t data, uint8_t regSelect){
   char errorCode = 0; 
   //data needs to be flipped due to hardware configurations
@@ -43,12 +52,19 @@ char lcd_write(SPI_HandleTypeDef * spiHandler, uint8_t data, uint8_t regSelect){
   return errorCode;
 }
 
+/*
+This function takes the spi handler, and clears the LCD of all data
+*/
 char lcd_clear(SPI_HandleTypeDef * spiHandler){
   char errorCode = 0;
   lcd_write(spiHandler, 0x01, 0);
   return errorCode;
 }
 
+/*
+This function takes the spi handler, the selected position and line, and sets
+the cursor to that position
+*/
 char lcd_goto(SPI_HandleTypeDef * spiHandler, uint8_t pos, uint8_t line){
   char errorCode = 0;
   if (line == 1) {
@@ -66,6 +82,10 @@ char lcd_goto(SPI_HandleTypeDef * spiHandler, uint8_t pos, uint8_t line){
   return errorCode;
 }
 
+/*
+This function takes the spi handler, and a string, and writes that string to 
+the current position
+*/
 char lcd_putString(SPI_HandleTypeDef * spiHandler, uint8_t * s){
   char errorCode = 0;
   while(*s){
@@ -74,6 +94,9 @@ char lcd_putString(SPI_HandleTypeDef * spiHandler, uint8_t * s){
   return errorCode;
 }
 
+/*
+This function takes the spi handler, and displays the static text on the LCD
+*/
 char lcd_staticText(SPI_HandleTypeDef * spiHandler){
   char errorCode = 0;
   lcd_clear(spiHandler);
@@ -81,19 +104,19 @@ char lcd_staticText(SPI_HandleTypeDef * spiHandler){
   lcd_putString(spiHandler, "GreenFlow");
   lcd_goto(spiHandler, 0, 3);
   lcd_putString(spiHandler, "Current Use:");
-  lcd_goto(spiHandler, 15, 3);
-  lcd_write(spiHandler, 0xA5, 1);
   lcd_goto(spiHandler, 19, 3);
   lcd_putString(spiHandler, "L");
   lcd_goto(spiHandler, 0, 4);
   lcd_putString(spiHandler, "Total Use:");
-  lcd_goto(spiHandler, 15, 4);
-  lcd_write(spiHandler, 0xA5, 1);
   lcd_goto(spiHandler, 19, 4);
   lcd_putString(spiHandler, "L");
   return errorCode;
 }
 
+/*
+This function takes the spi handler, and the displayData class, and displays
+the the relevant battery flags on the second line of the LCD
+*/
 char lcd_statusMessage(SPI_HandleTypeDef * spiHandler, gd_lcdData displayData){
   char errorCode = 0;
   static uint8_t lcd_messageCount = 0;
@@ -143,7 +166,90 @@ char lcd_statusMessage(SPI_HandleTypeDef * spiHandler, gd_lcdData displayData){
   return errorCode;
 }
 
-//zero or initalize any variables here
+/*
+This function takes the spi handler, and the displayData class, and displays
+the current volume on the third line of the LCD
+*/
+char lcd_displayCurrent(SPI_HandleTypeDef * spiHandler, gd_lcdData displayData){
+  char errorCode = 0;
+  char currentLiters[5];
+  sprintf(currentLiters, "%.1f", displayData.currentVolumeInLiters);
+  if(displayData.currentVolumeInLiters >= 10000){
+    sprintf(currentLiters, "%.0f", displayData.currentVolumeInLiters);
+    lcd_goto(spiHandler, 13, 3);
+    lcd_putString(spiHandler, currentLiters);   
+  }
+  else if(displayData.currentVolumeInLiters >= 1000){
+    sprintf(currentLiters, "%.0f", displayData.currentVolumeInLiters);
+    lcd_goto(spiHandler, 13, 3);
+    lcd_write(spiHandler, 0x20, 1);
+    lcd_putString(spiHandler, currentLiters);   
+  }
+  else if(displayData.currentVolumeInLiters >= 100){
+    lcd_goto(spiHandler, 13, 3);
+    lcd_putString(spiHandler, currentLiters);
+  }
+  else if(displayData.currentVolumeInLiters >= 10){
+    lcd_goto(spiHandler, 14, 3);
+    lcd_putString(spiHandler, currentLiters);  
+  }
+  else{
+    lcd_goto(spiHandler, 15, 3);
+    lcd_putString(spiHandler, currentLiters);  
+  }
+  return errorCode;
+}
+
+/*
+This function takes the spi handler, and the displayData class, and displays
+the total volume on the fourth line of the LCD
+*/
+char lcd_displayTotal(SPI_HandleTypeDef * spiHandler, gd_lcdData displayData){
+  char errorCode = 0;
+  char totalLiters[5];
+  sprintf(totalLiters, "%.1f", displayData.totalVolumeInLiters);
+  if(displayData.totalVolumeInLiters >= 100000){
+    sprintf(totalLiters, "%.0f", displayData.totalVolumeInLiters);
+    lcd_goto(spiHandler, 12, 4);
+    lcd_putString(spiHandler, totalLiters);   
+  }
+  else if(displayData.totalVolumeInLiters >= 10000){
+    sprintf(totalLiters, "%.0f", displayData.totalVolumeInLiters);
+    lcd_goto(spiHandler, 12, 4);
+    lcd_write(spiHandler, 0x20, 1);
+    lcd_putString(spiHandler, totalLiters);   
+  }
+  else if(displayData.totalVolumeInLiters >= 1000){
+    sprintf(totalLiters, "%.0f", displayData.totalVolumeInLiters);
+    lcd_goto(spiHandler, 12, 4);
+    lcd_write(spiHandler, 0x20, 1);
+    lcd_write(spiHandler, 0x20, 1);
+    lcd_putString(spiHandler, totalLiters);   
+  }
+  else if(displayData.totalVolumeInLiters >= 100){
+    lcd_goto(spiHandler, 12, 4);
+    lcd_write(spiHandler, 0x20, 1);
+    lcd_putString(spiHandler, totalLiters);
+  }
+  else if(displayData.totalVolumeInLiters >= 10){
+    lcd_goto(spiHandler, 12, 4);
+    lcd_write(spiHandler, 0x20, 1);
+    lcd_write(spiHandler, 0x20, 1);
+    lcd_putString(spiHandler, totalLiters);  
+  }
+  else{
+    lcd_goto(spiHandler, 12, 4);
+    lcd_write(spiHandler, 0x20, 1);
+    lcd_write(spiHandler, 0x20, 1);
+    lcd_write(spiHandler, 0x20, 1);
+    lcd_putString(spiHandler, totalLiters);  
+  }
+  return errorCode;
+}
+
+/*
+This function takes the spi handler, initializes the LCD
+*/
 char lcd_initLcdData(SPI_HandleTypeDef * spiHandler)
 {
    uint8_t data;
@@ -178,27 +284,21 @@ char lcd_initLcdData(SPI_HandleTypeDef * spiHandler)
   return errorCode;
 }
 
-
+/*
+This function takes the spi handler, and the displayData class, calls the 
+appropriate functions to display status messages, as well as current and 
+total volumes
+*/
 char lcd_updateScreen(SPI_HandleTypeDef * spiHandler, gd_lcdData displayData)
 {
   char errorCode = 0;
   char buttonInput = 0;
-  //test LCD Code for debugging
-  
   //look in buttonStates.h on this function
   errorCode = bs_getInputButtons(&buttonInput);
-  //TODO for JP: update lcd in here with values from displayData and 
-  //interupt flags from the push buttons
+  //TODO for JP: update lcd in here with values from displayData
   lcd_statusMessage(spiHandler, displayData);
-/*
-  displayData.currentVolumeInLiters=0;
-  displayData.totalVolumeInLiters=0;
-  
-  displayData.flowChargerFlags = 0;
-  displayData.flowBatteryFlags = 0;
-  displayData.hubCharger = 0;
-  displayData.hubBattery = 0;
-  */
-  
+  lcd_displayCurrent(spiHandler, displayData);
+  lcd_displayTotal(spiHandler, displayData);
+
   return errorCode;
 }

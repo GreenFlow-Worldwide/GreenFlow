@@ -35,19 +35,21 @@ char gd_getDisplayData(gd_lcdData * displayData)
   //have error code here display something different for each function call
   char errorCode = 0;
   
-  double updatedVolume = 0;
+  double updatedCurrentVolume = 0;
+  double updatedTotalVolume = 0;
   char updatedFlowBatteryFlags = 0;
   char updatedFlowChargerFlags = 0;
   char updatedHubCharger = 0;
   char updatedHubBattery = 0;
   
   //TODO: error check after each function, deal with each error code seperately
-  errorCode = dd_getUpdatedFlowData(&updatedVolume, &updatedFlowBatteryFlags, &updatedFlowChargerFlags);
+  errorCode = dd_getUpdatedFlowData(&updatedCurrentVolume, &updatedFlowBatteryFlags, &updatedFlowChargerFlags);
   errorCode = cs_getUpdatedHubCharger(&updatedHubCharger);
   errorCode = bc_getUpdatedHubBattery(&updatedHubBattery);
   
   //copy values to struct to pass back
-  displayData->volume = updatedVolume;
+  displayData->currentVolumeInLiters = updatedCurrentVolume;
+  displayData->totalVolumeInLiters = 500 + updatedCurrentVolume;
   displayData->flowChargerFlags = updatedFlowChargerFlags;
   displayData->flowBatteryFlags = updatedFlowBatteryFlags;
   displayData->hubCharger = updatedHubCharger;

@@ -7,11 +7,12 @@
 
 typedef struct
 {
-  double volume;
-  char flowChargerFlags;
-  char flowBatteryFlags;
-  char hubCharger;
-  char hubBattery;
+	double currentVolumeInLiters;
+	double totalVolumeInLiters;
+	char flowChargerFlags;
+	char flowBatteryFlags;
+	char hubCharger;
+	char hubBattery;
 }gd_lcdData;
 
 char gd_getDisplayData(gd_lcdData * displayData);

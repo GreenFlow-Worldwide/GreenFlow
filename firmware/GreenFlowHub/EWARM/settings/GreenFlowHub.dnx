@@ -13,14 +13,14 @@
     </Stack>
     <StLinkDriver>
         <stlinkserialNo>67242031</stlinkserialNo>
-        <stlinkfoundProbes>67242031:87153260:</stlinkfoundProbes>
+        <stlinkfoundProbes />
         <CStepIntDis>_ 0</CStepIntDis>
         <LeaveTargetRunning>_ 0</LeaveTargetRunning>
         <stlinkResetStyle>0</stlinkResetStyle>
         <stlinkResetStrategy>1</stlinkResetStrategy>
     </StLinkDriver>
     <DebugChecksum>
-        <Checksum>3984308534</Checksum>
+        <Checksum>166869319</Checksum>
     </DebugChecksum>
     <Exceptions>
         <StopOnUncaught>_ 0</StopOnUncaught>
@@ -44,10 +44,8 @@
         <Bp5>_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\Src\stm32l0xx_it.c}.133.3" 0 0 1 "" 0 "" 0</Bp5>
         <Bp6>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\Src\uartIO.c}.19.1" 0 0 1 "" 0 "" 0</Bp6>
         <Bp7>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\Src\uartIO.c}.20.1" 0 0 1 "" 0 "" 0</Bp7>
-        <Bp8>_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\Src\uartIO.c}.30.3" 0 0 1 "" 0 "" 0</Bp8>
-        <Bp9>_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\Src\uartIO.c}.51.9" 0 0 1 "" 0 "" 0</Bp9>
-        <Bp10>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\Src\stm32l0xx_it.c}.71.3" 0 0 1 "" 0 "" 0</Bp10>
-        <Count>11</Count>
+        <Bp8>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\Src\stm32l0xx_it.c}.71.3" 0 0 1 "" 0 "" 0</Bp8>
+        <Count>9</Count>
     </Breakpoints2>
     <LogFile>
         <LoggingEnabled>_ 0</LoggingEnabled>

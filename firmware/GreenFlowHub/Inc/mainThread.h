@@ -4,6 +4,6 @@
 char initMainThread(ADC_HandleTypeDef * batteryAdcHandler, UART_HandleTypeDef * uartHandler, SPI_HandleTypeDef * spiHandler);
 
 
-char mainThread(SPI_HandleTypeDef * spiHandler);
+char mainThread();
 
 #endif

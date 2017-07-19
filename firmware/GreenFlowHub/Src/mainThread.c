@@ -36,7 +36,7 @@ char initMainThread(ADC_HandleTypeDef * batteryAdcHandler, UART_HandleTypeDef * 
   return errorCode;
 }
 
-char mainThread(SPI_HandleTypeDef * spiHandler)
+char mainThread()
 {
   char errorCode = 0;
   //Check For New Data with this function
@@ -56,7 +56,7 @@ char mainThread(SPI_HandleTypeDef * spiHandler)
   displayData.hubCharger = 1;
   displayData.flowBatteryFlags = 1;
   displayData.hubBattery = 1;
-  errorCode = lcd_updateScreen(spiHandler, displayData);
+  errorCode = lcd_updateScreen(displayData);
   count = count + 1;
   if(count > 100){
     count = 0;

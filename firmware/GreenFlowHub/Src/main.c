@@ -98,7 +98,7 @@ int main(void)
   while (1)
   {
 
-    errorCode = mainThread(&hspi2);
+    errorCode = mainThread();
     //fatal error has occured restart board
     if(errorCode)
     {

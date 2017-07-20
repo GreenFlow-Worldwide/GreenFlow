@@ -7,6 +7,8 @@ all functions and file_wide variables will have prefix dd
 #include "stm32l0xx_hal.h"
 #include "uartIO.h"
 #include "decodedData.h"
+#include <stdbool.h>
+
 
 static double dd_currentVolume;
 static char dd_flowBatteryFlags;
@@ -25,7 +27,7 @@ char dd_initDecodedData(UART_HandleTypeDef * uartHandler)
   return errorCode;
 }
 
-char dd_decodeData()
+char dd_decodeData(bool * newData)
 {
   char errorCode = 0;
   
@@ -35,8 +37,11 @@ char dd_decodeData()
   char flowBatteryFlags = 0;
   
   //get the data from UartIO
-  errorCode = uio_getUartRawData(&volume, &flowChargerFlags, &flowBatteryFlags);
-  
+  errorCode = uio_getUartRawData(&volume, &flowChargerFlags, &flowBatteryFlags, newData);
+  if(volume < 0.1)
+  {
+    volume = 0.0;
+  }
   //If error code received that needs to be sent up, do it now.
   if(errorCode)
   {
@@ -52,10 +57,10 @@ char dd_decodeData()
 }
 
 //grab volume and applicable flags to display on LCD
-char dd_getUpdatedFlowData(double * flowVolume, char * flowBatteryFlags, char * flowChargerFlags)
+char dd_getUpdatedFlowData(double * flowVolume, char * flowBatteryFlags, char * flowChargerFlags, bool * newData)
 {
   char errorCode = 0;
-  errorCode = dd_decodeData();
+  errorCode = dd_decodeData(newData);
   
   //return values passed in by reference with current values
   *flowVolume = dd_currentVolume;

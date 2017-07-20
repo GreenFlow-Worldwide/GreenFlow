@@ -30,7 +30,7 @@ char gd_initGrabData(ADC_HandleTypeDef * batteryAdcHandler, UART_HandleTypeDef *
   return errorCode;
 }
 
-char gd_getDisplayData(gd_lcdData * displayData)
+char gd_getDisplayData(gd_lcdData * displayData, bool * newData)
 {
   //have error code here display something different for each function call
   char errorCode = 0;
@@ -43,7 +43,7 @@ char gd_getDisplayData(gd_lcdData * displayData)
   char updatedHubBattery = 0;
   
   //TODO: error check after each function, deal with each error code seperately
-  errorCode = dd_getUpdatedFlowData(&updatedCurrentVolume, &updatedFlowBatteryFlags, &updatedFlowChargerFlags);
+  errorCode = dd_getUpdatedFlowData(&updatedCurrentVolume, &updatedFlowBatteryFlags, &updatedFlowChargerFlags, newData);
   errorCode = cs_getUpdatedHubCharger(&updatedHubCharger);
   errorCode = bc_getUpdatedHubBattery(&updatedHubBattery);
   

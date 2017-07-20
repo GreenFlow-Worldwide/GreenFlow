@@ -10,7 +10,7 @@ all functions and file_wide variables will have prefix uio
 #include "stdbool.h"
 #include "uartIO.h"
 
-#define SIZE_OF_BUFFER 5
+#define SIZE_OF_BUFFER 7
 
 static UART_HandleTypeDef * uio_uartHandler;
 
@@ -43,17 +43,25 @@ char uio_initUartIO(UART_HandleTypeDef * uartHandler)
 }
 
 //get Uart values recieved from last uart interrupt
-char uio_getUartRawData(double *volumeInLitres, char *flowChargerFlags, char *flowBatteryFlags)
+char uio_getUartRawData(double *volumeInLitres, char *flowChargerFlags, char *flowBatteryFlags, bool *newDataFlag)
 {
   char errorCode = 0;
   dataHandler recievedData;
+  
   if(newData){
-    int value = sizeof(recievedData);
     memcpy(&recievedData, saveData, SIZE_OF_BUFFER);
+    *newDataFlag = true; //this flag tells the main loop to update the LCD
     newData = false;
+      if(recievedData.errorCode != 0xCC)
+      {
+        //TODO LED GOES CRAZY
+        errorCode = 1;//check to ensure that recieved struct ends in 0xCC as expected
+      }
   }
+
   //convertTicks to volume 1850 ticks = 4 litres from tests
   //roughly every 463 is a litre 
+  //*volumeInLitres = (double)tempVal/ 463.0; //testCode
   *volumeInLitres = (double)recievedData.volumeInTicks / 463.0;
   *flowChargerFlags = recievedData.flowChargerFlags;
   *flowBatteryFlags = recievedData.flowBatteryFlags;
@@ -63,15 +71,3 @@ char uio_getUartRawData(double *volumeInLitres, char *flowChargerFlags, char *fl
   return errorCode;
 }
 
-//TODO: Remove testCode,
-//char uio_sentPacket()
-//{
-//  uint8_t outputChar[3] = {1,2,3};
-//  uint8_t inputChar[3] = {0,0,0};
-  // HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout)
-//  char errorCode = HAL_UART_Transmit(uio_uartHandler, outputChar, 3, 1000);
-//  HAL_Delay(500);
-  //HAL_UART_Receive(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-  //errorCode = HAL_UART_Receive(uio_uartHandler, inputChar, 3, 1000);
-//  return 0;
-//}

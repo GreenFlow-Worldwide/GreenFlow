@@ -23,6 +23,8 @@ static uint8_t bc_batteryFlag;
   //copy Adc handler to be used in this c file
   bc_batteryAdcHandle = batteryAdcHandle;
   
+   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_4, GPIO_PIN_SET);
+  
   //TODO: if HAL library returns any error, escape and restart hardware
   if(HAL_ADC_Start(bc_batteryAdcHandle))
   {
@@ -37,10 +39,10 @@ static uint8_t bc_batteryFlag;
  uint8_t bc_checkBatteryStatus()
 {
   uint8_t errorCode = 0;
-  
+  //set ADC read pin high here.
   uint32_t currentBatteryValue = HAL_ADC_GetValue(bc_batteryAdcHandle);
   
-  bc_batteryFlag = 10;
+  bc_batteryFlag = 0;
   return errorCode;
 }
 

@@ -122,7 +122,7 @@ the the relevant battery flags on the second line of the LCD
 char lcd_statusMessage(gd_lcdData displayData){
   char errorCode = 0;
   static uint8_t lcd_messageCount = 0;
-  if(lcd_messageCount < 8){
+  if(lcd_messageCount < 3){
     if(displayData.flowChargerFlags){
       lcd_goto(0, 2);
       lcd_putString("Flow Charging");
@@ -174,29 +174,29 @@ the current volume on the third line of the LCD
 */
 char lcd_displayCurrent(gd_lcdData displayData){
   char errorCode = 0;
-  char currentLiters[5];
+  char currentLiters[10];
+  lcd_goto(13, 3);
+  
   sprintf(currentLiters, "%.1f", displayData.currentVolumeInLiters);
   if(displayData.currentVolumeInLiters >= 10000){
+    lcd_goto(12, 3); //go back a space
     sprintf(currentLiters, "%.0f", displayData.currentVolumeInLiters);
-    lcd_goto(13, 3);
     lcd_putString(currentLiters);   
   }
   else if(displayData.currentVolumeInLiters >= 1000){
     sprintf(currentLiters, "%.0f", displayData.currentVolumeInLiters);
-    lcd_goto(13, 3);
     lcd_write(0x20, 1);
     lcd_putString(currentLiters);   
   }
   else if(displayData.currentVolumeInLiters >= 100){
-    lcd_goto(13, 3);
     lcd_putString(currentLiters);
   }
   else if(displayData.currentVolumeInLiters >= 10){
-    lcd_goto(14, 3);
+    lcd_putString(" ");
     lcd_putString(currentLiters);  
   }
   else{
-    lcd_goto(15, 3);
+    lcd_putString("  ");
     lcd_putString(currentLiters);  
   }
   return errorCode;

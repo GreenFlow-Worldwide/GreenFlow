@@ -8,4 +8,36 @@ all functions and file_wide variables will have prefix us
 */
 
 
-#include "CalcVolume.h"
+
+#include "batteryCheck.h"
+#include "chargerState.h"
+#include "uartSend.h"
+#include "uartIO.h"
+#include "calcVolume.h"
+
+void us_sendDataToFlow()
+{
+  //initalize variables
+  uint8_t errorCode = 0;
+  uint16_t updatedVolumeInTicks = 0;
+  uint8_t updatedFlowCharger = 0xFF;
+  uint8_t updatedFlowBattery = 0xFF;
+  uint8_t updatedErrorCode = 0xCC;
+  
+  //grab flow information from increment and battery + charger
+  errorCode = cs_getUpdatedHubCharger(&updatedFlowCharger);
+  errorCode = bc_getUpdatedHubBattery(&updatedFlowBattery);
+  errorCode = cv_getUpdatedFlowVolume(&updatedVolumeInTicks);
+  
+  //init struct that will be sent
+  dataHandler dataToSend;
+  
+  dataToSend.volumeInTicks = updatedVolumeInTicks;
+  dataToSend.flowChargerFlags = updatedFlowCharger;
+  dataToSend.flowBatteryFlags = updatedFlowBattery;
+  dataToSend.errorCode = updatedErrorCode;
+  
+  
+  uio_sentPacket(dataToSend);
+
+}

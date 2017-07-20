@@ -40,29 +40,14 @@ char mainThread()
 {
   char errorCode = 0;
   //Check For New Data with this function
-  //errorCode = gd_getDisplayData(&displayData);
+  bool newPacket = false;
+  errorCode = gd_getDisplayData(&displayData, &newPacket);
   
-  //give updated data to lcd to update screen
-  //errorCode = lcd_updateScreen(displayData);
-
-    static uint8_t count = 0;
-
-  
-  //every loop volume will go up.
-  displayData.totalVolumeInLiters += 1.23;
-  displayData.currentVolumeInLiters += 1.23;
-  HAL_Delay(250);
-  displayData.flowChargerFlags = 1;
-  displayData.hubCharger = 1;
-  displayData.flowBatteryFlags = 1;
-  displayData.hubBattery = 1;
-  errorCode = lcd_updateScreen(displayData);
-  count = count + 1;
-  if(count > 100){
-    count = 0;
+  //only update the screen whenever a new packet is recieved
+  //or tick timer is hit.
+  if(newPacket){
+    //give updated data to lcd to update screen
+    errorCode = lcd_updateScreen(displayData);
   }
-  
-  
-  
   return errorCode;
 }

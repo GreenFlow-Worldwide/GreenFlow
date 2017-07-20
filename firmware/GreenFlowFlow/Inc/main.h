@@ -46,20 +46,28 @@
 
 /* Private define ------------------------------------------------------------*/
 
-#define flowInput_Pin GPIO_PIN_0
-#define flowInput_GPIO_Port GPIOA
+#define BLE_Pair_Pin GPIO_PIN_13
+#define BLE_Pair_GPIO_Port GPIOC
+#define PULSE_Pin GPIO_PIN_1
+#define PULSE_GPIO_Port GPIOA
+#define HS_SW_EN_Pin GPIO_PIN_4
+#define HS_SW_EN_GPIO_Port GPIOC
 #define LED_Red_Pin GPIO_PIN_0
 #define LED_Red_GPIO_Port GPIOB
-#define LED_Blue_Pin GPIO_PIN_1
-#define LED_Blue_GPIO_Port GPIOB
+#define LED_Orange_Pin GPIO_PIN_1
+#define LED_Orange_GPIO_Port GPIOB
 #define LED_Green_Pin GPIO_PIN_2
 #define LED_Green_GPIO_Port GPIOB
-#define Charger_FLT_Pin GPIO_PIN_12
-#define Charger_FLT_GPIO_Port GPIOB
+#define Charger_ADPP_Pin GPIO_PIN_12
+#define Charger_ADPP_GPIO_Port GPIOB
 #define Charger_STAT_Pin GPIO_PIN_13
 #define Charger_STAT_GPIO_Port GPIOB
-#define Charger_ADPP_Pin GPIO_PIN_14
-#define Charger_ADPP_GPIO_Port GPIOB
+#define Charger_FLT_Pin GPIO_PIN_14
+#define Charger_FLT_GPIO_Port GPIOB
+#define BLE_Wakeup_Pin GPIO_PIN_11
+#define BLE_Wakeup_GPIO_Port GPIOA
+#define BLE_Enable_Pin GPIO_PIN_12
+#define BLE_Enable_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
 

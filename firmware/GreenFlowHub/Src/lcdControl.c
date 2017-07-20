@@ -260,10 +260,14 @@ char lcd_initLcdData(SPI_HandleTypeDef * spiHandlerTemp)
 // INIT LCD HERE
   char errorCode = 0;
   char bs_initButtonStates();
+  //Pull LCD_LED high turns backlight on.
+  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6, GPIO_PIN_SET);
+
   //set the !EO pin low for the shift register output enable
   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_RESET);
   //set latch low to turn off 
   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, GPIO_PIN_RESET);
+
   HAL_Delay(150); //delay after power is applied
   data = 0xC0; //data should be 0x30  but has been flipped and shifted
   lcd_sendData(data);

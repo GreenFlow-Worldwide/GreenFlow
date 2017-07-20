@@ -1,7 +1,7 @@
 [PreviousGenFiles]
-HeaderPath=E:/GreenFlow/GreenFlow/firmware/GreenFlowFlow/Inc
+HeaderPath=C:/Users/JP/Desktop/499code/GreenFlow/firmware/GreenFlowFlow/Inc
 HeaderFiles=stm32l0xx_it.h;stm32l0xx_hal_conf.h;main.h;
-SourcePath=E:/GreenFlow/GreenFlow/firmware/GreenFlowFlow/Src
+SourcePath=C:/Users/JP/Desktop/499code/GreenFlow/firmware/GreenFlowFlow/Src
 SourceFiles=stm32l0xx_it.h;stm32l0xx_hal_conf.h;main.h;stm32l0xx_it.c;stm32l0xx_hal_msp.c;main.c;
 
 [PreviousLibFiles]

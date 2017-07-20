@@ -1180,6 +1180,9 @@
                 <name>$PROJ_DIR$\..\Src\decodedData.c</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\Src\flagTimer.c</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\Src\grabData.c</name>
             </file>
             <file>
@@ -1216,6 +1219,12 @@
                 <name>$PROJ_DIR$\..\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal.c</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_adc.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_adc_ex.c</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_cortex.c</name>
             </file>
             <file>
@@ -1250,6 +1259,9 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_rcc_ex.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_spi.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_tim.c</name>

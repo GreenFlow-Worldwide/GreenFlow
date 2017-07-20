@@ -290,43 +290,57 @@ static void MX_GPIO_Init(void)
   GPIO_InitTypeDef GPIO_InitStruct;
 
   /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOC_CLK_ENABLE();
+  __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_4, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(HS_SW_EN_GPIO_Port, HS_SW_EN_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, LED_Red_Pin|LED_Blue_Pin|LED_Green_Pin|Charger_FLT_Pin 
-                          |Charger_STAT_Pin|Charger_ADPP_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, LED_Red_Pin|LED_Orange_Pin|LED_Green_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : flowInput_Pin */
-  GPIO_InitStruct.Pin = flowInput_Pin;
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOA, BLE_Wakeup_Pin|BLE_Enable_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : BLE_Pair_Pin */
+  GPIO_InitStruct.Pin = BLE_Pair_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(BLE_Pair_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : PULSE_Pin */
+  GPIO_InitStruct.Pin = PULSE_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(PULSE_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : HS_SW_EN_Pin */
+  GPIO_InitStruct.Pin = HS_SW_EN_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
-  HAL_GPIO_Init(flowInput_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : PC4 */
-  GPIO_InitStruct.Pin = GPIO_PIN_4;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+  HAL_GPIO_Init(HS_SW_EN_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : LED_Red_Pin LED_Blue_Pin LED_Green_Pin */
-  GPIO_InitStruct.Pin = LED_Red_Pin|LED_Blue_Pin|LED_Green_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : Charger_FLT_Pin Charger_STAT_Pin Charger_ADPP_Pin */
-  GPIO_InitStruct.Pin = Charger_FLT_Pin|Charger_STAT_Pin|Charger_ADPP_Pin;
+  /*Configure GPIO pins : LED_Red_Pin LED_Orange_Pin LED_Green_Pin */
+  GPIO_InitStruct.Pin = LED_Red_Pin|LED_Orange_Pin|LED_Green_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : Charger_ADPP_Pin Charger_STAT_Pin Charger_FLT_Pin */
+  GPIO_InitStruct.Pin = Charger_ADPP_Pin|Charger_STAT_Pin|Charger_FLT_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : BLE_Wakeup_Pin BLE_Enable_Pin */
+  GPIO_InitStruct.Pin = BLE_Wakeup_Pin|BLE_Enable_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
 }
 

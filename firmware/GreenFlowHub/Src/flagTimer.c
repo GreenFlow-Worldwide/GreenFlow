@@ -12,12 +12,12 @@ all functions and file_wide variables will have prefix ft
 
 bool updateScreenFlag;
 bool resetVolumeFlag;
-static TIM_HandleTypeDef * TimerHandler; //not using at the moment. Save for future work.
+static TIM_HandleTypeDef * timerHandler; //not using at the moment. Save for future work.
 int resetVolumeCounter;
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef * TimerHandler)
 {
-  pdateScreenFlag = true;
+  updateScreenFlag = true;
   if(resetVolumeCounter > 5)
   {
     resetVolumeCounter = 0;
@@ -33,19 +33,18 @@ uint8_t ft_initFlag(TIM_HandleTypeDef * timerHandlerTemp)
   uint8_t errorCode = 0;
   resetVolumeCounter = 0;
   resetVolumeFlag = false;
-  timerFlag = false;
+  updateScreenFlag = false;
   //save timer handlers to compare to later.
-  TimerHandler = timerHandlerTemp
-  HAL_TIM_Base_Start_IT(TimerHandlerUpdateScreenTemp);
-  HAL_TIM_Base_Start_IT(TimerHandlerRefreshVolumeTemp);
+  timerHandler = timerHandlerTemp;
+  HAL_TIM_Base_Start_IT(timerHandler);
   return errorCode;
 }
 
 uint8_t ft_checkTimerFlag(bool * isUpdateScreenFlag, bool * isResetVolumeFlag)
 {
   uint8_t errorCode = 0;
-  *isUpdateScreenFlag = timerFlag;
-  isUpdateScreenFlag = false;
+  *isUpdateScreenFlag = updateScreenFlag;
+  updateScreenFlag = false;
   
   //TODO: DEAL WITH REFESH VOLUME COUNTER (set to 0 when reset until new data)
   *isResetVolumeFlag = resetVolumeFlag;

@@ -46,6 +46,8 @@
 
 /* Private define ------------------------------------------------------------*/
 
+#define BLE_Pair_Pin GPIO_PIN_13
+#define BLE_Pair_GPIO_Port GPIOC
 #define backButton_Pin GPIO_PIN_0
 #define backButton_GPIO_Port GPIOA
 #define backButton_EXTI_IRQn EXTI0_1_IRQn
@@ -58,12 +60,12 @@
 #define nextbutton_Pin GPIO_PIN_5
 #define nextbutton_GPIO_Port GPIOA
 #define nextbutton_EXTI_IRQn EXTI4_15_IRQn
-#define ADC_Activate_Pin GPIO_PIN_4
-#define ADC_Activate_GPIO_Port GPIOC
+#define HS_SW_EN_Pin GPIO_PIN_4
+#define HS_SW_EN_GPIO_Port GPIOC
 #define LED_Red_Pin GPIO_PIN_0
 #define LED_Red_GPIO_Port GPIOB
-#define LED_Blue_Pin GPIO_PIN_1
-#define LED_Blue_GPIO_Port GPIOB
+#define LED_Orange_Pin GPIO_PIN_1
+#define LED_Orange_GPIO_Port GPIOB
 #define LED_Green_Pin GPIO_PIN_2
 #define LED_Green_GPIO_Port GPIOB
 #define LCD_Clock_Pin GPIO_PIN_10
@@ -89,6 +91,10 @@
 #define uartTX_GPIO_Port GPIOA
 #define uartRx_Pin GPIO_PIN_10
 #define uartRx_GPIO_Port GPIOA
+#define BLE_Wakeup_Pin GPIO_PIN_11
+#define BLE_Wakeup_GPIO_Port GPIOA
+#define BLE_Enable_Pin GPIO_PIN_12
+#define BLE_Enable_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
 

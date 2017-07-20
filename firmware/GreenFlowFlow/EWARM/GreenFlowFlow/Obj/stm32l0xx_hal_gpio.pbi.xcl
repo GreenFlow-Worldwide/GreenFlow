@@ -1,16 +1,16 @@
-"E:\GreenFlow\GreenFlow\firmware\GreenFlowFlow\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_gpio.c"
+"C:\Users\JP\Desktop\499code\GreenFlow\firmware\GreenFlowFlow\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_gpio.c"
 -std=c11
 -ferror-limit=100
 -I
-E:\GreenFlow\GreenFlow\firmware\GreenFlowFlow\EWARM/../Inc
+C:\Users\JP\Desktop\499code\GreenFlow\firmware\GreenFlowFlow\EWARM/../Inc
 -I
-E:\GreenFlow\GreenFlow\firmware\GreenFlowFlow\EWARM/../Drivers/STM32L0xx_HAL_Driver/Inc
+C:\Users\JP\Desktop\499code\GreenFlow\firmware\GreenFlowFlow\EWARM/../Drivers/STM32L0xx_HAL_Driver/Inc
 -I
-E:\GreenFlow\GreenFlow\firmware\GreenFlowFlow\EWARM/../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy
+C:\Users\JP\Desktop\499code\GreenFlow\firmware\GreenFlowFlow\EWARM/../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy
 -I
-E:\GreenFlow\GreenFlow\firmware\GreenFlowFlow\EWARM/../Drivers/CMSIS/Device/ST/STM32L0xx/Include
+C:\Users\JP\Desktop\499code\GreenFlow\firmware\GreenFlowFlow\EWARM/../Drivers/CMSIS/Device/ST/STM32L0xx/Include
 -I
-E:\GreenFlow\GreenFlow\firmware\GreenFlowFlow\EWARM/../Drivers/CMSIS/Include
+C:\Users\JP\Desktop\499code\GreenFlow\firmware\GreenFlowFlow\EWARM/../Drivers/CMSIS/Include
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\arm\CMSIS\Include
 -I
@@ -18,15 +18,15 @@ C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\arm\inc
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\arm\inc\c
 -I
-E:\GreenFlow\GreenFlow\firmware\GreenFlowFlow\Inc
+C:\Users\JP\Desktop\499code\GreenFlow\firmware\GreenFlowFlow\Inc
 -I
-E:\GreenFlow\GreenFlow\firmware\GreenFlowFlow\Drivers\STM32L0xx_HAL_Driver\Inc
+C:\Users\JP\Desktop\499code\GreenFlow\firmware\GreenFlowFlow\Drivers\STM32L0xx_HAL_Driver\Inc
 -I
-E:\GreenFlow\GreenFlow\firmware\GreenFlowFlow\Drivers\STM32L0xx_HAL_Driver\Inc\Legacy
+C:\Users\JP\Desktop\499code\GreenFlow\firmware\GreenFlowFlow\Drivers\STM32L0xx_HAL_Driver\Inc\Legacy
 -I
-E:\GreenFlow\GreenFlow\firmware\GreenFlowFlow\Drivers\CMSIS\Device\ST\STM32L0xx\Include
+C:\Users\JP\Desktop\499code\GreenFlow\firmware\GreenFlowFlow\Drivers\CMSIS\Device\ST\STM32L0xx\Include
 -I
-E:\GreenFlow\GreenFlow\firmware\GreenFlowFlow\Drivers\CMSIS\Include
+C:\Users\JP\Desktop\499code\GreenFlow\firmware\GreenFlowFlow\Drivers\CMSIS\Include
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\arm\CMSIS\Include
 -D__CHAR_BITS__=8

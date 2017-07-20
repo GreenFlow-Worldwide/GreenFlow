@@ -208,7 +208,7 @@ the total volume on the fourth line of the LCD
 */
 char lcd_displayTotal(gd_lcdData displayData){
   char errorCode = 0;
-  char totalLiters[5];
+  char totalLiters[10];
   sprintf(totalLiters, "%.1f", displayData.totalVolumeInLiters);
   if(displayData.totalVolumeInLiters >= 100000){
     sprintf(totalLiters, "%.0f", displayData.totalVolumeInLiters);

@@ -32,6 +32,18 @@ char initMainThread(ADC_HandleTypeDef * batteryAdcHandler, UART_HandleTypeDef * 
   displayData.flowBatteryFlags = 0;
   displayData.hubCharger = 0;
   displayData.hubBattery = 0;
+
+  
+  //test LED lights
+  HAL_GPIO_WritePin(GPIOB, LED_Red_Pin|LED_Blue_Pin|LED_Green_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIOB, LED_Red_Pin|LED_Blue_Pin|LED_Green_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, LED_Green_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIOB, LED_Green_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, LED_Blue_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIOB, LED_Blue_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, LED_Red_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIOB, LED_Red_Pin, GPIO_PIN_RESET);
+
   
   return errorCode;
 }
@@ -42,8 +54,8 @@ char mainThread()
   //Check For New Data with this function
   bool newPacket = false;
   errorCode = gd_getDisplayData(&displayData, &newPacket);
-  
-  //only update the screen whenever a new packet is recieved
+
+//only update the screen whenever a new packet is recieved
   //or tick timer is hit.
   if(newPacket){
     //give updated data to lcd to update screen

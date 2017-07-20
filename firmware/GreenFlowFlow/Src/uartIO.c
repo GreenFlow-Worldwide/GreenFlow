@@ -9,7 +9,7 @@ all functions and file_wide variables will have prefix uio
 #include "stdint.h"
 #include "uartIO.h"
 
-#define SIZE_OF_STRUCT 5
+#define SIZE_OF_STRUCT 7
 
 static UART_HandleTypeDef * uio_uartHandler;
 
@@ -22,16 +22,6 @@ char uio_initUartIO(UART_HandleTypeDef * uartHandler)
   return errorCode;
 }
 
-char uio_getUartRawData(double *volume, char *flowChargerFlags, char *flowBatteryFlags)
-{
-  char errorCode = 0;
-  
-  *volume = 5;
-  *flowChargerFlags = 0;
-  *flowBatteryFlags = 1;
-  uio_sentPacket();
-  return errorCode;
-}
 
 char uio_sentPacket(dataHandler dataToSend)
 {

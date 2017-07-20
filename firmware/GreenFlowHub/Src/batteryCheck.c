@@ -23,6 +23,9 @@ char bc_initBatteryCheck(ADC_HandleTypeDef * batteryAdcHandle)
   //copy Adc handler to be used in this c file
   bc_batteryAdcHandle = batteryAdcHandle;
   
+  //SET adc read pin high.
+  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_4, GPIO_PIN_SET);
+  
   //TODO: if HAL library returns any error, escape and restart hardware
   if(HAL_ADC_Start(bc_batteryAdcHandle))
   {

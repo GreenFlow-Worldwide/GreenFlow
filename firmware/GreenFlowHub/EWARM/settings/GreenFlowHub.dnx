@@ -12,15 +12,15 @@
         <ByteLimit>50</ByteLimit>
     </Stack>
     <StLinkDriver>
+        <stlinkResetStyle>0</stlinkResetStyle>
+        <stlinkResetStrategy>1</stlinkResetStrategy>
         <stlinkserialNo>67242031</stlinkserialNo>
         <stlinkfoundProbes>67242031:87153260:</stlinkfoundProbes>
         <CStepIntDis>_ 0</CStepIntDis>
         <LeaveTargetRunning>_ 0</LeaveTargetRunning>
-        <stlinkResetStyle>0</stlinkResetStyle>
-        <stlinkResetStrategy>1</stlinkResetStrategy>
     </StLinkDriver>
     <DebugChecksum>
-        <Checksum>3984308534</Checksum>
+        <Checksum>516765698</Checksum>
     </DebugChecksum>
     <Exceptions>
         <StopOnUncaught>_ 0</StopOnUncaught>
@@ -32,40 +32,41 @@
     <Disassembly>
         <MixedMode>1</MixedMode>
     </Disassembly>
-    <DisassembleMode>
-        <mode>0</mode>
-    </DisassembleMode>
-    <Breakpoints2>
-        <Bp0>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\Src\uartIO.c}.74.1" 0 0 1 "" 0 "" 0</Bp0>
-        <Bp1>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\Src\uartIO.c}.74.3" 0 0 1 "" 0 "" 0</Bp1>
-        <Bp2>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_uart.c}.1628.12" 0 0 1 "" 0 "" 0</Bp2>
-        <Bp3>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_uart.c}.1628.12" 0 0 1 "" 0 "" 0</Bp3>
-        <Bp4>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_uart.c}.1628.12" 0 0 1 "" 0 "" 0</Bp4>
-        <Bp5>_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\Src\stm32l0xx_it.c}.133.3" 0 0 1 "" 0 "" 0</Bp5>
-        <Bp6>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\Src\uartIO.c}.19.1" 0 0 1 "" 0 "" 0</Bp6>
-        <Bp7>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\Src\uartIO.c}.20.1" 0 0 1 "" 0 "" 0</Bp7>
-        <Bp8>_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\Src\uartIO.c}.30.3" 0 0 1 "" 0 "" 0</Bp8>
-        <Bp9>_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\Src\uartIO.c}.51.9" 0 0 1 "" 0 "" 0</Bp9>
-        <Bp10>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\Src\stm32l0xx_it.c}.71.3" 0 0 1 "" 0 "" 0</Bp10>
-        <Count>11</Count>
-    </Breakpoints2>
     <LogFile>
         <LoggingEnabled>_ 0</LoggingEnabled>
         <LogFile>_ ""</LogFile>
         <Category>_ 0</Category>
     </LogFile>
-    <TermIOLog>
-        <LoggingEnabled>_ 0</LoggingEnabled>
-        <LogFile>_ ""</LogFile>
-    </TermIOLog>
-    <Aliases>
-        <Count>0</Count>
-        <SuppressDialog>0</SuppressDialog>
-    </Aliases>
     <CallStackLog>
         <Enabled>0</Enabled>
     </CallStackLog>
     <CallStackStripe>
         <ShowTiming>1</ShowTiming>
     </CallStackStripe>
+    <TermIOLog>
+        <LoggingEnabled>_ 0</LoggingEnabled>
+        <LogFile>_ ""</LogFile>
+    </TermIOLog>
+    <DisassembleMode>
+        <mode>0</mode>
+    </DisassembleMode>
+    <Breakpoints2>
+        <Bp0>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\Src\uartIO.c}.73.1" 0 0 1 "" 0 "" 0</Bp0>
+        <Bp1>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\Src\uartIO.c}.73.1" 0 0 1 "" 0 "" 0</Bp1>
+        <Bp2>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_uart.c}.1628.1" 0 0 1 "" 0 "" 0</Bp2>
+        <Bp3>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_uart.c}.1628.1" 0 0 1 "" 0 "" 0</Bp3>
+        <Bp4>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_uart.c}.1628.12" 0 0 1 "" 0 "" 0</Bp4>
+        <Bp5>_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\Src\stm32l0xx_it.c}.133.2" 0 0 1 "" 0 "" 0</Bp5>
+        <Bp6>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\Src\uartIO.c}.19.1" 0 0 1 "" 0 "" 0</Bp6>
+        <Bp7>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\Src\uartIO.c}.20.1" 0 0 1 "" 0 "" 0</Bp7>
+        <Bp8>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\Src\stm32l0xx_it.c}.71.1" 0 0 1 "" 0 "" 0</Bp8>
+        <Bp9>_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\Src\uartIO.c}.58.1" 0 0 1 "" 0 "" 0</Bp9>
+        <Bp10>_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\Src\uartIO.c}.23.2" 0 0 1 "" 0 "" 0</Bp10>
+        <Bp11>_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\Src\uartIO.c}.58.9" 0 0 1 "" 0 "" 0</Bp11>
+        <Count>12</Count>
+    </Breakpoints2>
+    <Aliases>
+        <Count>0</Count>
+        <SuppressDialog>0</SuppressDialog>
+    </Aliases>
 </settings>

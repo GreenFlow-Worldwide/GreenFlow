@@ -19,7 +19,7 @@ uint8_t cs_initChargerState()
 uint8_t cs_checkChargerStatus()
 {
   char errorCode = 0;
-  cs_chargerFlag = 5;
+  cs_chargerFlag = 0;
   return errorCode;
 }
 

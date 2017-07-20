@@ -23,29 +23,20 @@ char initMainThread(ADC_HandleTypeDef * batteryAdcHandler, UART_HandleTypeDef * 
   uint8_t errorCode = 0;
   uio_initUartIO(uartHandler);
   errorCode = bc_initBatteryCheck(batteryAdcHandler);
+  errorCode = ft_initFlag();
   return errorCode;
 }
 
 uint8_t mainThread()
 {
   uint8_t errorCode = 0;
-  uint16_t updatedVolumeInTicks = 0;
-  uint8_t updatedFlowCharger = 0;
-  uint8_t updatedFlowBattery = 0;
-  uint8_t updatedErrorCode = 0;
-  //grab flow information from increment and battery + charger
-  errorCode = cs_getUpdatedHubCharger(&updatedFlowCharger);
-  errorCode = bc_getUpdatedHubBattery(&updatedFlowBattery);
-  errorCode = cv_getUpdatedFlowVolume(&updatedVolumeInTicks);
+  //TODO check flag timer
+  bool flagTimer = false;
+  errorCode = ft_checkTimerFlag(&flagTimer);
+  //if it is time, send data
+  if(flagTimer){
+    us_sendDataToFlow();
+  }
   
-  dataHandler dataToSend;
-  dataToSend.volumeInTicks = updatedVolumeInTicks;
-  dataToSend.flowChargerFlags = updatedFlowCharger;
-  dataToSend.flowBatteryFlags = updatedFlowBattery;
-  dataToSend.errorCode = updatedErrorCode;
-  
-  
-  uio_sentPacket(dataToSend);
-
   return errorCode;
 }

@@ -5,7 +5,7 @@
 
 typedef struct
 {
-	uint16_t volumeInTicks;
+	uint32_t volumeInTicks;
 	uint8_t flowChargerFlags;
 	uint8_t flowBatteryFlags;
 	uint8_t errorCode;

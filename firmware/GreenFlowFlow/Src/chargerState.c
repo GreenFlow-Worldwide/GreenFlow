@@ -5,6 +5,7 @@ all functions and file_wide variables will have prefix cs
 */
 #include "chargerState.h"
 #include "stdint.h"
+#include "stm32l0xx_hal.h"
 
 static uint8_t cs_chargerFlag;
 
@@ -20,6 +21,14 @@ uint8_t cs_checkChargerStatus()
 {
   char errorCode = 0;
   cs_chargerFlag = 0;
+  cs_chargerFlag = !(HAL_GPIO_ReadPin(GPIOB, Charger_STAT_Pin));
+  if(cs_chargerFlag)
+  {
+      HAL_GPIO_WritePin(GPIOB, LED_Orange_Pin, GPIO_PIN_SET);
+  }else
+  {
+      HAL_GPIO_WritePin(GPIOB, LED_Orange_Pin, GPIO_PIN_RESET);
+  }
   return errorCode;
 }
 

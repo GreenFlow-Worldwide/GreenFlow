@@ -14,7 +14,7 @@ all functions and file_wide variables will have prefix gd
 #include "decodedData.h"
 #include "grabData.h"
 
-
+double totalWaterUse;
 //initalize all data and function call decoded data, charger state
 // and battery check to initalize as well.
 char gd_initGrabData(ADC_HandleTypeDef * batteryAdcHandler, UART_HandleTypeDef * uartHandler)
@@ -27,6 +27,7 @@ char gd_initGrabData(ADC_HandleTypeDef * batteryAdcHandler, UART_HandleTypeDef *
   
   //pass adcHandler to the battery 
   errorCode = bc_initBatteryCheck(batteryAdcHandler);
+  totalWaterUse = 0.0;
   return errorCode;
 }
 

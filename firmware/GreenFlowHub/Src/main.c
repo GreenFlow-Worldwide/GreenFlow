@@ -51,6 +51,7 @@ SPI_HandleTypeDef hspi2;
 TIM_HandleTypeDef htim2;
 
 UART_HandleTypeDef huart1;
+UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
@@ -64,6 +65,7 @@ static void MX_USART1_UART_Init(void);
 static void MX_ADC_Init(void);
 static void MX_SPI2_Init(void);
 static void MX_TIM2_Init(void);
+static void MX_USART2_UART_Init(void);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
@@ -103,10 +105,22 @@ int main(void)
   MX_ADC_Init();
   MX_SPI2_Init();
   MX_TIM2_Init();
+  MX_USART2_UART_Init();
 
   /* USER CODE BEGIN 2 */
   int errorCode = 0;
-  errorCode = initMainThread(&hadc, &huart1, &hspi2);
+  HAL_TIM_Base_Start_IT(&htim2);
+  //TODO: switch huart2(physical wire) for huart1(bluetooth)
+  errorCode = initMainThread(&hadc, &huart2, &hspi2);
+  
+  //fatal error has occured restart board
+  if(errorCode)
+  {
+    //error happened, set red pin high
+    HAL_GPIO_WritePin(GPIOB, LED_Red_Pin, GPIO_PIN_SET);
+    while(1);  
+    //restart board
+  }
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -118,8 +132,10 @@ int main(void)
     //fatal error has occured restart board
     if(errorCode)
     {
-      //TODO: deal with fatal error with system reset
-      while(1);
+      //error happened, set red pin high
+      HAL_GPIO_WritePin(GPIOB, LED_Red_Pin, GPIO_PIN_SET);
+      while(1);  
+      //restart board
     }
   /* USER CODE END WHILE */
 
@@ -169,8 +185,9 @@ void SystemClock_Config(void)
     _Error_Handler(__FILE__, __LINE__);
   }
 
-  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART1;
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART1|RCC_PERIPHCLK_USART2;
   PeriphClkInit.Usart1ClockSelection = RCC_USART1CLKSOURCE_PCLK2;
+  PeriphClkInit.Usart2ClockSelection = RCC_USART2CLKSOURCE_PCLK1;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
@@ -305,6 +322,27 @@ static void MX_USART1_UART_Init(void)
 
 }
 
+/* USART2 init function */
+static void MX_USART2_UART_Init(void)
+{
+
+  huart2.Instance = USART2;
+  huart2.Init.BaudRate = 9600;
+  huart2.Init.WordLength = UART_WORDLENGTH_8B;
+  huart2.Init.StopBits = UART_STOPBITS_1;
+  huart2.Init.Parity = UART_PARITY_NONE;
+  huart2.Init.Mode = UART_MODE_TX_RX;
+  huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart2.Init.OverSampling = UART_OVERSAMPLING_16;
+  huart2.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+  huart2.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+  if (HAL_UART_Init(&huart2) != HAL_OK)
+  {
+    _Error_Handler(__FILE__, __LINE__);
+  }
+
+}
+
 /** Configure pins as 
         * Analog 
         * Input 
@@ -357,11 +395,17 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : Charger_FLT_Pin Charger_STAT_Pin Charger_ADPP_Pin */
-  GPIO_InitStruct.Pin = Charger_FLT_Pin|Charger_STAT_Pin|Charger_ADPP_Pin;
+  /*Configure GPIO pins : Charger_FLT_Pin Charger_ADPP_Pin */
+  GPIO_InitStruct.Pin = Charger_FLT_Pin|Charger_ADPP_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : Charger_STAT_Pin */
+  GPIO_InitStruct.Pin = Charger_STAT_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(Charger_STAT_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : LED_LCK_Pin */
   GPIO_InitStruct.Pin = LED_LCK_Pin;

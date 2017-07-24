@@ -14,13 +14,15 @@ all functions and file_wide variables will have prefix uio
 
 static UART_HandleTypeDef * uio_uartHandler;
 
-char recieveBuffer[SIZE_OF_BUFFER];
-char saveData[SIZE_OF_BUFFER];
-bool newData;
+static char recieveBuffer[SIZE_OF_BUFFER];
+static char saveData[SIZE_OF_BUFFER];
+static bool newData;
+static dataHandler recievedData;
+
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huartInterruptHandler)
 {
-	if (huartInterruptHandler->Instance == USART1)	//current UART
+	if (huartInterruptHandler->Instance == USART2)	//current UART
 		{
                   for(int i = 0; i < SIZE_OF_BUFFER; i++){ 
                     saveData[i] = recieveBuffer[i];
@@ -38,6 +40,14 @@ char uio_initUartIO(UART_HandleTypeDef * uartHandler)
   char errorCode = 0;
   newData = false;
   uio_uartHandler = uartHandler;
+  
+  //init the struct to save the data
+  recievedData.volumeInTicks=0;
+  recievedData.flowChargerFlags=0;
+  recievedData.flowBatteryFlags = 0;
+  recievedData.errorCode = 0;
+
+  
   HAL_UART_Receive_IT(uio_uartHandler, (uint8_t *)recieveBuffer, SIZE_OF_BUFFER);
   return errorCode;
 }
@@ -46,16 +56,17 @@ char uio_initUartIO(UART_HandleTypeDef * uartHandler)
 char uio_getUartRawData(double *volumeInLitres, char *flowChargerFlags, char *flowBatteryFlags, bool *newDataFlag)
 {
   char errorCode = 0;
-  dataHandler recievedData;
+
   
   if(newData){
     memcpy(&recievedData, saveData, SIZE_OF_BUFFER);
     *newDataFlag = true; //this flag tells the main loop to update the LCD
     newData = false;
-      if(recievedData.errorCode != 0xCC)
+    if(recievedData.errorCode != 0xCC)
       {
         //TODO LED GOES CRAZY
         errorCode = 1;//check to ensure that recieved struct ends in 0xCC as expected
+        return errorCode;
       }
   }
 

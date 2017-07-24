@@ -18,13 +18,6 @@ int resetVolumeCounter;
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef * TimerHandler)
 {
   updateScreenFlag = true;
-  if(resetVolumeCounter > 5)
-  {
-    resetVolumeCounter = 0;
-    resetVolumeFlag = true;
-  }
-  resetVolumeCounter++;
-  
 }
 
 //init timer 2 and timer 21 for interrupt flags
@@ -40,15 +33,13 @@ uint8_t ft_initFlag(TIM_HandleTypeDef * timerHandlerTemp)
   return errorCode;
 }
 
-uint8_t ft_checkTimerFlag(bool * isUpdateScreenFlag, bool * isResetVolumeFlag)
+//set flags based on timer.
+uint8_t ft_checkTimerFlag(bool * isUpdateScreenFlag)
 {
   uint8_t errorCode = 0;
   *isUpdateScreenFlag = updateScreenFlag;
   updateScreenFlag = false;
   
-  //TODO: DEAL WITH REFESH VOLUME COUNTER (set to 0 when reset until new data)
-  *isResetVolumeFlag = resetVolumeFlag;
-  resetVolumeFlag = false;
   
   return errorCode;
 }

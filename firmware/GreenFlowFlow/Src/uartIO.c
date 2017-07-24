@@ -8,6 +8,7 @@ all functions and file_wide variables will have prefix uio
 #include "stm32l0xx_hal.h"
 #include "stdint.h"
 #include "uartIO.h"
+#include "string.h"
 
 #define SIZE_OF_STRUCT 7
 
@@ -25,10 +26,10 @@ char uio_initUartIO(UART_HandleTypeDef * uartHandler)
 
 char uio_sentPacket(dataHandler dataToSend)
 {
-    uint8_t outputData[SIZE_OF_STRUCT];
-    memcpy(outputData, &dataToSend, SIZE_OF_STRUCT);
+  uint8_t outputData[SIZE_OF_STRUCT];
+  memcpy(outputData, &dataToSend, SIZE_OF_STRUCT);
 
-        //HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-    char errorCode = HAL_UART_Transmit(uio_uartHandler, outputData, SIZE_OF_STRUCT, 1000);
+  //HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+  char errorCode = HAL_UART_Transmit(uio_uartHandler, outputData, SIZE_OF_STRUCT, 1000);
   return 0;
 }

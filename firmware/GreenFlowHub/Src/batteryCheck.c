@@ -36,17 +36,23 @@ char bc_initBatteryCheck(ADC_HandleTypeDef * batteryAdcHandle)
 }
 
 
-//TODO: grab battery states and put them here to be decoded later.
-char bc_checkBatteryStatus()
+ uint8_t bc_checkBatteryStatus()
 {
-  char errorCode = 0;
-  
+  uint8_t errorCode = 0;
+  //set ADC read pin high here.
   uint32_t currentBatteryValue = HAL_ADC_GetValue(bc_batteryAdcHandle);
   
-  bc_batteryFlag = 10;
+  //check below will raise a flag if the ADC check value is less than 3v3
+  //value 3217/4095 is 3.3/4.2 volts
+  if(currentBatteryValue  < 3217)
+  {
+    bc_batteryFlag = 1;
+  }else{
+    bc_batteryFlag = 0;
+  }
+
   return errorCode;
 }
-
 char bc_getUpdatedHubBattery(char * batteryFlag)
 {
   char errorCode = 0;

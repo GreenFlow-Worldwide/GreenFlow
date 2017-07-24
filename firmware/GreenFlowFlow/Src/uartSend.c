@@ -15,7 +15,7 @@ all functions and file_wide variables will have prefix us
 #include "uartIO.h"
 #include "calcVolume.h"
 
-void us_sendDataToFlow()
+uint8_t us_sendDataToFlow()
 {
   //initalize variables
   uint8_t errorCode = 0;
@@ -38,6 +38,8 @@ void us_sendDataToFlow()
   dataToSend.errorCode = updatedErrorCode;
   
   
-  uio_sentPacket(dataToSend);
+  errorCode = uio_sentPacket(dataToSend);
+  
+  return errorCode;
 
 }

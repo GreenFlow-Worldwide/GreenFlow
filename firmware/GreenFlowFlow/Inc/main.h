@@ -50,6 +50,10 @@
 #define BLE_Pair_GPIO_Port GPIOC
 #define PULSE_Pin GPIO_PIN_1
 #define PULSE_GPIO_Port GPIOA
+#define UARTPhysTX_Pin GPIO_PIN_2
+#define UARTPhysTX_GPIO_Port GPIOA
+#define UARTPhysRX_Pin GPIO_PIN_3
+#define UARTPhysRX_GPIO_Port GPIOA
 #define HS_SW_EN_Pin GPIO_PIN_4
 #define HS_SW_EN_GPIO_Port GPIOC
 #define LED_Red_Pin GPIO_PIN_0

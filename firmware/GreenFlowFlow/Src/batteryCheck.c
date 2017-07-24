@@ -35,14 +35,21 @@ static uint8_t bc_batteryFlag;
 }
 
 
-//TODO: grab battery states and put them here to be decoded later.
+
  uint8_t bc_checkBatteryStatus()
 {
   uint8_t errorCode = 0;
   //set ADC read pin high here.
   uint32_t currentBatteryValue = HAL_ADC_GetValue(bc_batteryAdcHandle);
   
-  bc_batteryFlag = 0;
+  //check below will raise a flag if the ADC check value is less than 3v3
+  if(currentBatteryValue  < 3217)
+  {
+    bc_batteryFlag = 1;
+  }else{
+    bc_batteryFlag = 0;
+  }
+
   return errorCode;
 }
 

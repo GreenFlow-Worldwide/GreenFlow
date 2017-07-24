@@ -4,6 +4,7 @@ we will have be checking the charger state
 all functions and file_wide variables will have prefix cs
 */
 #include "chargerState.h"
+#include "stm32l0xx_hal.h"
 
 static char cs_chargerFlag;
 
@@ -14,11 +15,18 @@ char cs_initChargerState()
   return errorCode;
 }
 
-//TODO: grab charger states and put them here to be decoded later.
+
 char cs_checkChargerStatus()
 {
   char errorCode = 0;
-  cs_chargerFlag = 5;
+  cs_chargerFlag = !(HAL_GPIO_ReadPin(GPIOB, Charger_STAT_Pin));
+  if(cs_chargerFlag)
+  {
+      HAL_GPIO_WritePin(GPIOB, LED_Orange_Pin, GPIO_PIN_SET);
+  }else
+  {
+      HAL_GPIO_WritePin(GPIOB, LED_Orange_Pin, GPIO_PIN_RESET);
+  }
   return errorCode;
 }
 

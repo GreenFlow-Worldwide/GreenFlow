@@ -53,6 +53,7 @@ char dd_decodeData(bool * newData)
   dd_flowChargerFlags = flowChargerFlags;
   dd_flowBatteryFlags = flowBatteryFlags;
   
+  
   return errorCode;
 }
 

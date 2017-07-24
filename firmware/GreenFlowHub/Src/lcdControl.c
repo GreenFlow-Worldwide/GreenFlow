@@ -10,6 +10,16 @@ all functions and file_wide variables will have prefix lcd
 
 static SPI_HandleTypeDef * spiHandler;
 
+
+char lcd_clearStatus(){
+	char errorCode = 0;
+        lcd_goto(0, 2);
+	for (uint8_t i =0; i<20; i++){
+		errorCode = lcd_write(0x20, 1);
+	}
+        return errorCode;
+}
+
 /*
 this function takes the spi handler and a byte of data and sends it out of the 
 spi port. It sends the byte 3 times while toggling the Enable bit for the LCD
@@ -121,11 +131,16 @@ the the relevant battery flags on the second line of the LCD
 */
 char lcd_statusMessage(gd_lcdData displayData){
   char errorCode = 0;
+  if(!(displayData.flowBatteryFlags | displayData.flowChargerFlags | displayData.hubBattery | displayData.hubCharger))
+  {
+    errorCode = lcd_clearStatus();
+    return errorCode;
+  }
   static uint8_t lcd_messageCount = 0;
-  if(lcd_messageCount < 3){
+  if(lcd_messageCount < 8){
     if(displayData.flowChargerFlags){
       lcd_goto(0, 2);
-      lcd_putString("Flow Charging");
+      lcd_putString("FLOW Charging");
     }
     else{
       lcd_messageCount = 8;
@@ -143,7 +158,7 @@ char lcd_statusMessage(gd_lcdData displayData){
   else if(lcd_messageCount < 24){
     if(displayData.hubCharger){
       lcd_goto(0, 2);
-      lcd_putString("Hub Charging");
+      lcd_putString("HUB Charging");
       lcd_write(0x20, 1);
     }
     else{

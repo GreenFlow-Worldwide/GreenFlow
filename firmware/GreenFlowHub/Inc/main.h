@@ -54,6 +54,10 @@
 #define downButton_Pin GPIO_PIN_1
 #define downButton_GPIO_Port GPIOA
 #define downButton_EXTI_IRQn EXTI0_1_IRQn
+#define UARTPhysTX_Pin GPIO_PIN_2
+#define UARTPhysTX_GPIO_Port GPIOA
+#define UARTPhysRX_Pin GPIO_PIN_3
+#define UARTPhysRX_GPIO_Port GPIOA
 #define upButton_Pin GPIO_PIN_4
 #define upButton_GPIO_Port GPIOA
 #define upButton_EXTI_IRQn EXTI4_15_IRQn
@@ -75,7 +79,6 @@
 #define Charger_FLT_EXTI_IRQn EXTI4_15_IRQn
 #define Charger_STAT_Pin GPIO_PIN_13
 #define Charger_STAT_GPIO_Port GPIOB
-#define Charger_STAT_EXTI_IRQn EXTI4_15_IRQn
 #define Charger_ADPP_Pin GPIO_PIN_14
 #define Charger_ADPP_GPIO_Port GPIOB
 #define Charger_ADPP_EXTI_IRQn EXTI4_15_IRQn

@@ -34,7 +34,6 @@
 #include "stm32l0xx_hal.h"
 #include "stm32l0xx.h"
 #include "stm32l0xx_it.h"
-#include "calcVolume.h"
 
 /* USER CODE BEGIN 0 */
 

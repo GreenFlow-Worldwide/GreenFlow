@@ -47,6 +47,7 @@ char bc_initBatteryCheck(ADC_HandleTypeDef * batteryAdcHandle)
   if(currentBatteryValue  < 3217)
   {
     bc_batteryFlag = 1;
+    HAL_GPIO_TogglePin(GPIOB, LED_Orange_Pin);
   }else{
     bc_batteryFlag = 0;
   }

@@ -8,14 +8,48 @@ all functions and file_wide variables will have prefix cv
 
 #include "stdint.h"
 #include "calcVolume.h"
+#include "flagTimer.h"
 
-int valueTest = 1000; //TODO: REMOVE TEST LINE
+
+int32_t flowCount;
+int32_t flowCountOld;
+
+void cv_initFlowCount()
+{
+    flowCount = 0;
+    flowCountOld = 0;
+}
+
+void cv_incrementFlowCount()
+{
+    ++flowCount;
+
+}
+
 uint8_t cv_getUpdatedFlowVolume(uint16_t * volumeInTicks)
 {
-  uint8_t errorCode = 0;
-  valueTest += 100;
-  //REMOVE TEST MATH
-  *volumeInTicks = valueTest;
+    uint8_t errorCode = 0;
+    bool newVolumeRecorded = false;
+    bool resetVolume = false;
+    //have a very low threshold to reset values 
+    if((flowCount - flowCountOld) < 30)
+    {
+      newVolumeRecorded = false;
+    }else
+    {
+      newVolumeRecorded = true;
+    }
+    //update old flow count to compare to next time around
+    flowCountOld = flowCount;
   
-  return errorCode;
+    //if no new data has been sent out in a while, reset the value.
+    errorCode = ft_checkResetVolumeFlag(newVolumeRecorded, &resetVolume);
+    if(resetVolume)
+    {
+      flowCount = 0;
+    }
+  
+    *volumeInTicks = flowCount;
+    
+    return errorCode;
 }

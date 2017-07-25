@@ -54,7 +54,7 @@ char dd_decodeData(bool * newData)
   dd_flowBatteryFlags = flowBatteryFlags;
   
   
-  return errorCode;
+return errorCode;
 }
 
 //grab volume and applicable flags to display on LCD

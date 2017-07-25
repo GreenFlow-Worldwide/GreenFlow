@@ -50,6 +50,7 @@
 #define BLE_Pair_GPIO_Port GPIOC
 #define PULSE_Pin GPIO_PIN_1
 #define PULSE_GPIO_Port GPIOA
+#define PULSE_EXTI_IRQn EXTI0_1_IRQn
 #define UARTPhysTX_Pin GPIO_PIN_2
 #define UARTPhysTX_GPIO_Port GPIOA
 #define UARTPhysRX_Pin GPIO_PIN_3

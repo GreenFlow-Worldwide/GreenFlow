@@ -14,20 +14,23 @@ all functions and file_wide variables will have prefix gd
 #include "decodedData.h"
 #include "grabData.h"
 
-double totalWaterUse;
+double lastRecordedVolumeInLiters;
+double totalWaterUseInLiters;
 //initalize all data and function call decoded data, charger state
 // and battery check to initalize as well.
 char gd_initGrabData(ADC_HandleTypeDef * batteryAdcHandler, UART_HandleTypeDef * uartHandler)
 {
   char errorCode = 0;
+  lastRecordedVolumeInLiters = 0;
+  totalWaterUseInLiters = 0;
+  
   //pass uart handler to decodedData -> UartIO
   errorCode = dd_initDecodedData(uartHandler);
-
   errorCode = cs_initChargerState();
   
   //pass adcHandler to the battery 
   errorCode = bc_initBatteryCheck(batteryAdcHandler);
-  totalWaterUse = 0.0;
+  totalWaterUseInLiters = 0.0;
   return errorCode;
 }
 
@@ -48,9 +51,18 @@ char gd_getDisplayData(gd_lcdData * displayData, bool * newData)
   errorCode = cs_getUpdatedHubCharger(&updatedHubCharger);
   errorCode = bc_getUpdatedHubBattery(&updatedHubBattery);
   
+  //check to see if the current volume has reset.
+  //if new recorded value is less than last recorded, reset
+  if(updatedCurrentVolume < lastRecordedVolumeInLiters)
+  {
+    totalWaterUseInLiters += lastRecordedVolumeInLiters;
+  }
+  lastRecordedVolumeInLiters = updatedCurrentVolume;
+  
   //copy values to struct to pass back
   displayData->currentVolumeInLiters = updatedCurrentVolume;
-  displayData->totalVolumeInLiters = 500 + updatedCurrentVolume;
+  //total water usage is total + current volumes
+  displayData->totalVolumeInLiters = totalWaterUseInLiters + updatedCurrentVolume;
   displayData->flowChargerFlags = updatedFlowChargerFlags;
   displayData->flowBatteryFlags = updatedFlowBatteryFlags;
   displayData->hubCharger = updatedHubCharger;

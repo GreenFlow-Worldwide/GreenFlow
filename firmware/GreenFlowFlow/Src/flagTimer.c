@@ -11,6 +11,9 @@ all functions and file_wide variables will have prefix ft
 #include <stdint.h>
 
 bool timerFlag;
+bool resetVolumeFlag;
+uint8_t resetVolumeCounter;
+
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
@@ -27,6 +30,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 uint8_t ft_initFlag()
 {
   uint8_t errorCode = 0;
+  resetVolumeCounter = 0;
+  resetVolumeFlag= false;
   timerFlag = false;
   return errorCode;
 }
@@ -37,7 +42,14 @@ uint8_t ft_checkTimerFlag(bool * isTimerFlag)
   *isTimerFlag = timerFlag;
   timerFlag = false;
   
-  if(newPacket)
+  
+  return errorCode;
+}
+
+uint8_t ft_checkResetVolumeFlag(const bool newVolume, bool * isResetVolumeFlag)
+{
+  int newPacket = 1;
+  if(newVolume)
   {
     *isResetVolumeFlag = false;
     resetVolumeCounter = 0;
@@ -45,7 +57,4 @@ uint8_t ft_checkTimerFlag(bool * isTimerFlag)
     *isResetVolumeFlag = resetVolumeFlag;
   }
   resetVolumeFlag = false;
-  
-  
-  return errorCode;
 }

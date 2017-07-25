@@ -35,6 +35,8 @@ uint8_t mainThread()
   uint8_t errorCode = 0;
   //TODO check flag timer
   bool flagTimer = false;
+  bool resetVolume = false;
+  //check if it is time to reset volume and reset 
   errorCode = ft_checkTimerFlag(&flagTimer);
   //if it is time, send data
   if(flagTimer){

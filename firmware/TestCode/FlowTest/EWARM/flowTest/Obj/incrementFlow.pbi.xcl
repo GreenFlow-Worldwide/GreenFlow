@@ -1,16 +1,16 @@
-"E:\GreenFlow\GreenFlow\firmware\FlowTest\Src\incrementFlow.c"
+"C:\Users\IEEE Admin\Desktop\GreenFlow\GreenFlow\firmware\TestCode\FlowTest\Src\incrementFlow.c"
 -std=c11
 -ferror-limit=100
 -I
-E:\GreenFlow\GreenFlow\firmware\FlowTest\EWARM/../Inc
+C:\Users\IEEE Admin\Desktop\GreenFlow\GreenFlow\firmware\TestCode\FlowTest\EWARM/../Inc
 -I
-E:\GreenFlow\GreenFlow\firmware\FlowTest\EWARM/../Drivers/STM32L0xx_HAL_Driver/Inc
+C:\Users\IEEE Admin\Desktop\GreenFlow\GreenFlow\firmware\TestCode\FlowTest\EWARM/../Drivers/STM32L0xx_HAL_Driver/Inc
 -I
-E:\GreenFlow\GreenFlow\firmware\FlowTest\EWARM/../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy
+C:\Users\IEEE Admin\Desktop\GreenFlow\GreenFlow\firmware\TestCode\FlowTest\EWARM/../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy
 -I
-E:\GreenFlow\GreenFlow\firmware\FlowTest\EWARM/../Drivers/CMSIS/Device/ST/STM32L0xx/Include
+C:\Users\IEEE Admin\Desktop\GreenFlow\GreenFlow\firmware\TestCode\FlowTest\EWARM/../Drivers/CMSIS/Device/ST/STM32L0xx/Include
 -I
-E:\GreenFlow\GreenFlow\firmware\FlowTest\EWARM/../Drivers/CMSIS/Include
+C:\Users\IEEE Admin\Desktop\GreenFlow\GreenFlow\firmware\TestCode\FlowTest\EWARM/../Drivers/CMSIS/Include
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\arm\CMSIS\Include
 -I
@@ -18,15 +18,15 @@ C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\arm\inc
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\arm\inc\c
 -I
-E:\GreenFlow\GreenFlow\firmware\FlowTest\Inc
+C:\Users\IEEE Admin\Desktop\GreenFlow\GreenFlow\firmware\TestCode\FlowTest\Inc
 -I
-E:\GreenFlow\GreenFlow\firmware\FlowTest\Drivers\STM32L0xx_HAL_Driver\Inc
+C:\Users\IEEE Admin\Desktop\GreenFlow\GreenFlow\firmware\TestCode\FlowTest\Drivers\STM32L0xx_HAL_Driver\Inc
 -I
-E:\GreenFlow\GreenFlow\firmware\FlowTest\Drivers\STM32L0xx_HAL_Driver\Inc\Legacy
+C:\Users\IEEE Admin\Desktop\GreenFlow\GreenFlow\firmware\TestCode\FlowTest\Drivers\STM32L0xx_HAL_Driver\Inc\Legacy
 -I
-E:\GreenFlow\GreenFlow\firmware\FlowTest\Drivers\CMSIS\Device\ST\STM32L0xx\Include
+C:\Users\IEEE Admin\Desktop\GreenFlow\GreenFlow\firmware\TestCode\FlowTest\Drivers\CMSIS\Device\ST\STM32L0xx\Include
 -I
-E:\GreenFlow\GreenFlow\firmware\FlowTest\Drivers\CMSIS\Include
+C:\Users\IEEE Admin\Desktop\GreenFlow\GreenFlow\firmware\TestCode\FlowTest\Drivers\CMSIS\Include
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\arm\CMSIS\Include
 -D__CHAR_BITS__=8

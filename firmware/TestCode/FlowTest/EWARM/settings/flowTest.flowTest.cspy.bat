@@ -25,7 +25,7 @@ if not "%~1" == "" goto debugFile
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\common\bin\cspybat" -f "E:\GreenFlow\GreenFlow\firmware\FlowTest\EWARM\settings\flowTest.flowTest.general.xcl" --backend -f "E:\GreenFlow\GreenFlow\firmware\FlowTest\EWARM\settings\flowTest.flowTest.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\common\bin\cspybat" -f "C:\Users\IEEE Admin\Desktop\GreenFlow\GreenFlow\firmware\TestCode\FlowTest\EWARM\settings\flowTest.flowTest.general.xcl" --backend -f "C:\Users\IEEE Admin\Desktop\GreenFlow\GreenFlow\firmware\TestCode\FlowTest\EWARM\settings\flowTest.flowTest.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\common\bin\cspybat" -f "E:\GreenFlow\GreenFlow\firmware\FlowTest\EWARM\settings\flowTest.flowTest.general.xcl" "--debug_file=%~1" --backend -f "E:\GreenFlow\GreenFlow\firmware\FlowTest\EWARM\settings\flowTest.flowTest.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\common\bin\cspybat" -f "C:\Users\IEEE Admin\Desktop\GreenFlow\GreenFlow\firmware\TestCode\FlowTest\EWARM\settings\flowTest.flowTest.general.xcl" "--debug_file=%~1" --backend -f "C:\Users\IEEE Admin\Desktop\GreenFlow\GreenFlow\firmware\TestCode\FlowTest\EWARM\settings\flowTest.flowTest.driver.xcl" 
 
 @echo off 
 :end

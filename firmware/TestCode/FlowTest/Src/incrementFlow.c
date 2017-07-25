@@ -10,7 +10,5 @@ void initFlowCount()
 void incrementFlowCount()
 {
   ++flowCount;
-  if(flowCount == 20){
-    flowCount = 0;
-  }
+
 }

@@ -19,7 +19,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   timerFlag = true;
   
-  if(resetVolumeCounter > 5)
+  if(resetVolumeCounter > 15)
   {
     resetVolumeCounter = 0;
     resetVolumeFlag = true;

@@ -32,7 +32,7 @@ uint8_t cv_getUpdatedFlowVolume(uint16_t * volumeInTicks)
     bool newVolumeRecorded = false;
     bool resetVolume = false;
     //have a very low threshold to reset values 
-    if((flowCount - flowCountOld) < 30)
+    if((flowCount - flowCountOld) < 5)
     {
       newVolumeRecorded = false;
     }else
